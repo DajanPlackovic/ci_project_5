@@ -1,4 +1,3 @@
-import './App.css';
 import TestHeader from './components/TestHeader';
 import { Button } from 'react-daisyui';
 
