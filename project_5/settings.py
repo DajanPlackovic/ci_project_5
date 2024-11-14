@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 if os.path.exists('env.py'):
-  import env
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,12 +30,12 @@ SECRET_KEY = 'django-insecure-ewprf_((0fzmqwm6h@&=6zas+20q)h_qfp06r4uyh11sz!b90h
 DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
-  os.environ.get('ALLOWED_HOST'),
-  'localhost',
+    os.environ.get('ALLOWED_HOST'),
+    'localhost',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-  os.environ.get('CLIENT_ORIGIN')
+    os.environ.get('CLIENT_ORIGIN')
 ]
 
 # Application definition
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,7 +66,9 @@ ROOT_URLCONF = 'project_5.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'staticfiles', 'build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,6 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
