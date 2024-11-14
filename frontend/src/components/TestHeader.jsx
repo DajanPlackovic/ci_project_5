@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Theme, Button } from 'react-daisyui';
 
 const TestHeader = () => {
   const [test, setTest] = useState(null);
@@ -17,11 +18,7 @@ const TestHeader = () => {
     getTestData();
   }, []);
 
-  return (
-    <div>
-      <h1>{ test }</h1>
-    </div>
-  );
+  return <Button color='primary'>{test}</Button>;
 };
 
 export default TestHeader;
