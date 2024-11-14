@@ -28,5 +28,5 @@ frontend/yarn-error.log*
 
 env.py
 
-__pycache__
+**/__pycache__/
 .vscode

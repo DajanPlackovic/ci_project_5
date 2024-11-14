@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 if os.path.exists('env.py'):
     import env
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ewprf_((0fzmqwm6h@&=6zas+20q)h_qfp06r4uyh11sz!b90h'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEBUG' in os.environ
@@ -48,6 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'project_5.urls'
@@ -88,10 +97,12 @@ WSGI_APPLICATION = 'project_5.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': ({
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
 }
 
 
@@ -132,7 +143,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
-
 
 
 # Default primary key field type
