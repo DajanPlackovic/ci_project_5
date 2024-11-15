@@ -1,11 +1,13 @@
 import TestHeader from './components/TestHeader';
-import { Button } from 'react-daisyui';
+import { Theme, Button } from 'react-daisyui';
 
 function App() {
   return (
     <div className='App'>
-      <TestHeader />
-      <Button>Test</Button>
+      <Theme dataTheme='mytheme'>
+        <TestHeader />
+        <Button>Test</Button>
+      </Theme>
     </div>
   );
 }
