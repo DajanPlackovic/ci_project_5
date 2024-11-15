@@ -1,13 +1,14 @@
-import TestHeader from './components/TestHeader';
-import { Theme, Button } from 'react-daisyui';
+import MainNavBar from './components/MainNavBar'
+import { GlobalThemeContextProvider } from './contexts/GlobalThemeContext';
+// import TestHeader from './components/TestHeader';
+// import { Theme, Button } from 'react-daisyui';
 
 function App() {
   return (
     <div className='App'>
-      <Theme dataTheme='mytheme'>
-        <TestHeader />
-        <Button>Test</Button>
-      </Theme>
+      <GlobalThemeContextProvider>
+        <MainNavBar />
+      </GlobalThemeContextProvider>
     </div>
   );
 }
