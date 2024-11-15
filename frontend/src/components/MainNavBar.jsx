@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React  from 'react';
 import { Navbar, Dropdown, Button, Badge } from 'react-daisyui';
 import {
   useGlobalTheme,
