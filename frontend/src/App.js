@@ -1,7 +1,5 @@
 import MainNavBar from './components/MainNavBar';
 import { Route, Routes } from 'react-router-dom';
-// import TestHeader from './components/TestHeader';
-// import { Theme, Button } from 'react-daisyui';
 
 function App() {
   return (
