@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Button, Tooltip } from 'react-daisyui';
 import {
   useGlobalTheme,
@@ -17,9 +18,11 @@ const MainNavBar = () => {
   return (
     <Navbar className='justify-between'>
       <div className='flex-1'>
-        <Button tag='a' className='text-xl normal-case' color='ghost'>
-          Project 5
-        </Button>
+        <Link to='/'>
+          <Button tag='a' className='text-xl normal-case' color='ghost'>
+            Project 5
+          </Button>
+        </Link>
       </div>
       <div className='flex-none'>
         <Tooltip message='Toggle Theme' position='left'>

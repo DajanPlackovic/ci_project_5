@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown, Button, Badge, Tooltip } from 'react-daisyui';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { Link } from 'react-router-dom';
 
 const ProfileMenu = () => {
   const currentUser = useCurrentUser();
@@ -30,9 +31,11 @@ const ProfileMenu = () => {
     </Dropdown>
   ) : (
     <Tooltip message='Sign Up or Sign In' position='left'>
-      <Button color='ghost' shape='circle' onClick={() => {}}>
-        <span class='material-symbols-outlined'>account_circle</span>
-      </Button>
+      <Link to='/login'>
+        <Button color='ghost' shape='circle' onClick={() => {}}>
+          <span class='material-symbols-outlined'>account_circle</span>
+        </Button>
+      </Link>
     </Tooltip>
   );
 };
