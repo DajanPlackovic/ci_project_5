@@ -6,7 +6,7 @@ export const SetGlobalThemeContext = createContext();
 export const useGlobalTheme = () => useContext(GlobalThemeContext);
 export const useSetGlobalTheme = () => useContext(SetGlobalThemeContext);
 
-export const GlobalThemeContextProvider = ({ children }) => {
+export const GlobalThemeProvider = ({ children }) => {
   const [globalTheme, setGlobalTheme] = useState('dark');
 
   useEffect(() => {
