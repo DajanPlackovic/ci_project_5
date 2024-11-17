@@ -27,12 +27,6 @@ const MainNavBar = () => {
           <span class='material-symbols-outlined'>
             {globalTheme === 'light' ? 'dark_mode' : 'light_mode'}
           </span>
-          {/* <i
-            className={
-              globalTheme === 'light'
-                ? 'fa-regular fa-moon fa-lg'
-                : 'fa-regular fa-sun fa-lg'
-            }></i> */}
         </Button>
         <Dropdown end>
           {currentUser ? (
