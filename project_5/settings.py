@@ -27,8 +27,16 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('API_SECRET'),
 }
 
+cloudinary.config(
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET']
+)
+
 STATIC_URL = '/media/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = cloudinary.utils.cloudinary_url('media/')[0]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
