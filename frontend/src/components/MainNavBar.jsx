@@ -11,10 +11,6 @@ const MainNavBar = () => {
   const setGlobalTheme = useSetGlobalTheme();
   const currentUser = useCurrentUser();
 
-  const debug = () => {
-    console.log(currentUser);
-  };
-
   const toggleTheme = () => {
     setGlobalTheme(globalTheme === 'dark' ? 'light' : 'dark');
   };
@@ -28,12 +24,15 @@ const MainNavBar = () => {
       </div>
       <div className='flex-none'>
         <Button color='ghost' shape='circle' onClick={toggleTheme}>
-          <i
+          <span class='material-symbols-outlined'>
+            {globalTheme === 'light' ? 'dark_mode' : 'light_mode'}
+          </span>
+          {/* <i
             className={
               globalTheme === 'light'
                 ? 'fa-regular fa-moon fa-lg'
                 : 'fa-regular fa-sun fa-lg'
-            }></i>
+            }></i> */}
         </Button>
         <Dropdown end>
           {currentUser ? (
@@ -49,7 +48,7 @@ const MainNavBar = () => {
             </Button>
           ) : (
             <Button color='ghost' shape='circle' onClick={() => {}}>
-              Login
+              <span class='material-symbols-outlined'>account_circle</span>
             </Button>
           )}
           <Dropdown.Menu className='mt-3 z-[1] w-52 menu-sm'>
