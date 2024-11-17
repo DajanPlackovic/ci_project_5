@@ -8,8 +8,8 @@ function App() {
     <div className='App'>
       <MainNavBar />
       <Routes>
-        <Route exact path='/' render={() => <h1>Test</h1>} />
-        <Route render={() => <h1>Not Found</h1>} />
+        <Route exact path='/' element={<h1>Test</h1>}></Route>
+        <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </div>
   );
