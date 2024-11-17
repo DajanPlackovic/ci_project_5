@@ -1,4 +1,5 @@
-import MainNavBar from './components/MainNavBar'
+import MainNavBar from './components/MainNavBar';
+import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { GlobalThemeContextProvider } from './contexts/GlobalThemeContext';
 // import TestHeader from './components/TestHeader';
 // import { Theme, Button } from 'react-daisyui';
@@ -6,9 +7,11 @@ import { GlobalThemeContextProvider } from './contexts/GlobalThemeContext';
 function App() {
   return (
     <div className='App'>
-      <GlobalThemeContextProvider>
-        <MainNavBar />
-      </GlobalThemeContextProvider>
+      <CurrentUserProvider>
+        <GlobalThemeContextProvider>
+          <MainNavBar />
+        </GlobalThemeContextProvider>
+      </CurrentUserProvider>
     </div>
   );
 }

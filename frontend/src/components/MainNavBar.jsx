@@ -1,13 +1,19 @@
-import React  from 'react';
+import React from 'react';
 import { Navbar, Dropdown, Button, Badge } from 'react-daisyui';
 import {
   useGlobalTheme,
   useSetGlobalTheme,
 } from '../contexts/GlobalThemeContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 const MainNavBar = () => {
   const globalTheme = useGlobalTheme();
   const setGlobalTheme = useSetGlobalTheme();
+  const currentUser = useCurrentUser();
+
+  const debug = () => {
+    console.log(currentUser);
+  };
 
   const toggleTheme = () => {
     setGlobalTheme(globalTheme === 'dark' ? 'light' : 'dark');
@@ -30,16 +36,22 @@ const MainNavBar = () => {
             }></i>
         </Button>
         <Dropdown end>
-          <Button
-            tag='label'
-            tabIndex={0}
-            color='ghost'
-            className='avatar'
-            shape='circle'>
-            <div className='w-10 rounded-full'>
-              <img src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' />
-            </div>
-          </Button>
+          {currentUser ? (
+            <Button
+              tag='label'
+              tabIndex={0}
+              color='ghost'
+              className='avatar'
+              shape='circle'>
+              <div className='w-10 rounded-full'>
+                <img src='https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' />
+              </div>
+            </Button>
+          ) : (
+            <Button color='ghost' shape='circle' onClick={() => {}}>
+              Login
+            </Button>
+          )}
           <Dropdown.Menu className='mt-3 z-[1] w-52 menu-sm'>
             <li>
               <a className='justify-between'>
