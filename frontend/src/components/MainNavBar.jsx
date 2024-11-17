@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Button } from 'react-daisyui';
+import { Navbar, Button, Tooltip } from 'react-daisyui';
 import {
   useGlobalTheme,
   useSetGlobalTheme,
@@ -22,11 +22,13 @@ const MainNavBar = () => {
         </Button>
       </div>
       <div className='flex-none'>
-        <Button color='ghost' shape='circle' onClick={toggleTheme}>
-          <span class='material-symbols-outlined'>
-            {globalTheme === 'light' ? 'dark_mode' : 'light_mode'}
-          </span>
-        </Button>
+        <Tooltip message='Toggle Theme' position='left'>
+          <Button color='ghost' shape='circle' onClick={toggleTheme}>
+            <span class='material-symbols-outlined'>
+              {globalTheme === 'light' ? 'dark_mode' : 'light_mode'}
+            </span>
+          </Button>
+        </Tooltip>
         <ProfileMenu />
       </div>
     </Navbar>
