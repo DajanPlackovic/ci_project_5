@@ -8,7 +8,7 @@ function App() {
     <div className='App'>
       <MainNavBar />
       <Routes>
-        <Route exact path='/' element={<h1>Test</h1>}></Route>
+        <Route exact path='/' element={<h1>Test</h1>} />
         <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </div>
