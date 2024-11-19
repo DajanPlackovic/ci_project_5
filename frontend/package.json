@@ -6,11 +6,9 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.7",
-    "daisyui": "^4.12.14",
-    "jwt-decode": "^4.0.0",
+    "boostrap": "^2.0.0",
     "react": "^18.3.1",
-    "react-daisyui": "^5.0.5",
+    "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
@@ -21,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "react-scripts build && rm -rf ../staticfiles/build && mv build ../staticfiles/."
+    "deploy": "react-scripts build && rm -rf ../staticfiles/build && cp -r build ../staticfiles/."
   },
   "eslintConfig": {
     "extends": [
@@ -40,9 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:5000",
-  "devDependencies": {
-    "tailwindcss": "^3.4.14"
   }
 }
