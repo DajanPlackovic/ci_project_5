@@ -16,6 +16,10 @@ const EditorPage = () => {
   // Use a ref to access the quill instance directly
   const quillRef = useRef();
 
+  const handleSubmit = () => {
+    console.log(quillRef.current.getContents());
+  };
+
   return (
     <div>
       <Editor
@@ -32,6 +36,7 @@ const EditorPage = () => {
         onSelectionChange={setRange}
         onTextChange={setLastChange}
       />
+      <Button onClick={handleSubmit}>Post</Button>
     </div>
   );
 };

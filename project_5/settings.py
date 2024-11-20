@@ -33,10 +33,8 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE['API_SECRET']
 )
 
-STATIC_URL = '/media/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATIC_URL = 'staticfiles/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_URL = cloudinary.utils.cloudinary_url('media/')[0]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
