@@ -36,7 +36,7 @@ function MainNavBar() {
               </span>
             </button>
             {currentUser ? (
-              <p>Logged In</p>
+              <p>{currentUser.username}</p>
             ) : (
               <Nav.Link href='/signin'>
                 <span className='material-symbols-outlined'>
