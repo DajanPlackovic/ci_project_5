@@ -6,8 +6,11 @@ import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 import { setTokenTimestamp } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useRedirect } from '../hooks/useRedirect';
 
 const SignInForm = () => {
+  useRedirect('loggedIn');
+
   const navigate = useNavigate();
 
   const setCurrentUser = useSetCurrentUser();
