@@ -3,7 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { useTheme, useSetTheme } from '../contexts/ThemeContext';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from '../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
@@ -13,6 +16,7 @@ function MainNavBar() {
   const setTheme = useSetTheme();
 
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -42,6 +46,16 @@ function MainNavBar() {
     getUserImage();
   }, [currentUser]);
 
+  const logOut = async () => {
+    try {
+      await axiosReq.post('/dj-rest-auth/logout/');
+      setCurrentUser(null);
+      setUserImage(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Navbar expand='lg' className='bg-body-tertiary'>
       <Container>
@@ -55,15 +69,18 @@ function MainNavBar() {
               </span>
             </button>
             {currentUser ? (
-              <Link className='nav-link'>
-                <Image src={userImage} roundedCircle height='40' />
-              </Link>
+              <button onClick={logOut} className='nav-link'>
+                <span class='material-symbols-outlined'>logout</span>
+              </button>
             ) : (
-              <Link to='/signin'>
+              // <Link className='nav-link'>
+              //   <Image src={userImage} roundedCircle height='40' />
+              // </Link>
+              <Nav.Link as={Link} to='/signin'>
                 <span className='material-symbols-outlined'>
                   account_circle
                 </span>
-              </Link>
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
