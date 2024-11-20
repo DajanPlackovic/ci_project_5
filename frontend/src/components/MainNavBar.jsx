@@ -1,20 +1,15 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Image from 'react-bootstrap/Image';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTheme, useSetTheme } from '../contexts/ThemeContext';
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-} from '../contexts/CurrentUserContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { Link } from 'react-router-dom';
 
 function MainNavBar() {
   const theme = useTheme();
   const setTheme = useSetTheme();
 
   const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -40,11 +35,11 @@ function MainNavBar() {
             {currentUser ? (
               <p>{currentUser.username}</p>
             ) : (
-              <Nav.Link href='/signin'>
+              <Link to='/signin'>
                 <span className='material-symbols-outlined'>
                   account_circle
                 </span>
-              </Nav.Link>
+              </Link>
             )}
           </Nav>
         </Navbar.Collapse>
