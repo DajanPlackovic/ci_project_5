@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Image from 'react-bootstrap/Image';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTheme, useSetTheme } from '../contexts/ThemeContext';
 import {
@@ -21,6 +22,7 @@ function MainNavBar() {
     } else {
       setTheme('light');
     }
+    console.log(currentUser);
   };
 
   return (

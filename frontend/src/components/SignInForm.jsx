@@ -28,11 +28,8 @@ const SignInForm = () => {
 
     try {
       const { data } = await axios.post('/dj-rest-auth/login/', formData);
-      console.log(data);
       setCurrentUser(data.user);
-      console.log('Set the user');
       setTokenTimestamp(data);
-      console.log('Got to navigate');
       navigate(-1);
     } catch (err) {
       // Add error handling
