@@ -60,6 +60,8 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN'),
     'localhost'
+    'localhost'
+    'localhost'
 ]
 
 # Application definition
@@ -101,6 +103,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'django_filters',
+    'django_quill',
     'rest_framework.authtoken',
     'rest_auth',
     'allauth',
@@ -151,11 +154,12 @@ WSGI_APPLICATION = 'project_5.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': (
-        dj_database_url.parse(
-            os.environ.get('DATABASE_URL')
-        )
-    )
+    'default': ({
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
 }
 
 
