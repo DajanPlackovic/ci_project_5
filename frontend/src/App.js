@@ -1,9 +1,9 @@
-import Button from 'react-bootstrap/Button';
+import MainNavBar from './components/MainNavBar';
 
 function App() {
   return (
     <div className='App'>
-      <Button>Test</Button>
+      <MainNavBar />
     </div>
   );
 }
