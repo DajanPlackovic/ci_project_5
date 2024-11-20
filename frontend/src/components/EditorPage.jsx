@@ -17,7 +17,8 @@ const EditorPage = () => {
   const quillRef = useRef();
 
   const handleSubmit = () => {
-    console.log(quillRef.current.getContents());
+    console.log(quillRef.current.getContents()); // this is how I get the delta
+    console.log(quillRef.current.root.innerHTML); // this is how I get the HTML for the database
   };
 
   return (
