@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 import { setTokenTimestamp } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -40,14 +41,20 @@ const SignInForm = () => {
     <Form className='m-auto col-12 col-md-8 col-lg-6' onSubmit={handleSubmit}>
       <Form.Group controlId='username'>
         <p className='form-floating'>
-          <Form.Control type='text' onChange={handleChange} name='username' />
+          <Form.Control
+            type='text'
+            value={formData.username}
+            onChange={handleChange}
+            name='username'
+          />
           <Form.Label>Username</Form.Label>
         </p>
       </Form.Group>
-      <Form.Group controlId='username'>
+      <Form.Group controlId='password'>
         <p className='form-floating'>
           <Form.Control
             type='password'
+            value={formData.password}
             onChange={handleChange}
             name='password'
           />
@@ -55,6 +62,9 @@ const SignInForm = () => {
         </p>
       </Form.Group>
       <Button type='submit'>Sign In</Button>
+      <p>
+        Don't have an account? <Link to='/signup'>Sign Up</Link>
+      </p>
     </Form>
   );
 };
