@@ -3,10 +3,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useTheme, useSetTheme } from '../contexts/ThemeContext';
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from '../contexts/CurrentUserContext';
 
 function MainNavBar() {
   const theme = useTheme();
   const setTheme = useSetTheme();
+
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -28,18 +35,15 @@ function MainNavBar() {
                 {theme === 'light' ? 'dark_mode' : 'light_mode'}
               </span>
             </button>
-            <Nav.Link href='#link'>Link</Nav.Link>
-            <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-              <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-              <NavDropdown.Item href='#action/3.2'>
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href='#action/3.4'>
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            {currentUser ? (
+              <p>Logged In</p>
+            ) : (
+              <Nav.Link href='/signin'>
+                <span className='material-symbols-outlined'>
+                  account_circle
+                </span>
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
