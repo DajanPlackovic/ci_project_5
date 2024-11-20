@@ -32,40 +32,6 @@ const EditorPage = () => {
         onSelectionChange={setRange}
         onTextChange={setLastChange}
       />
-      <Button
-        onClick={() => {
-          const content =
-            quillRef.current?.container?.querySelector('.ql-editor')?.innerHTML;
-          console.log(content);
-        }}>
-        Print Content
-      </Button>
-      <div class='controls'>
-        <label>
-          Read Only:{' '}
-          <input
-            type='checkbox'
-            value={readOnly}
-            onChange={(e) => setReadOnly(e.target.checked)}
-          />
-        </label>
-        <button
-          className='controls-right'
-          type='button'
-          onClick={() => {
-            alert(quillRef.current?.getLength());
-          }}>
-          Get Content Length
-        </button>
-      </div>
-      <div className='state'>
-        <div className='state-title'>Current Range:</div>
-        {range ? JSON.stringify(range) : 'Empty'}
-      </div>
-      <div className='state'>
-        <div className='state-title'>Last Change:</div>
-        {lastChange ? JSON.stringify(lastChange.ops) : 'Empty'}
-      </div>
     </div>
   );
 };

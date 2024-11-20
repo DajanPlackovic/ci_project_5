@@ -1,8 +1,12 @@
-from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework import generics, permissions
+from .models import Post
+from .serializers import PostSerializer
 
-# Create your views here.
-@api_view()
-def test_view(request):
-  return Response({"test": "This is a test"})
+
+class PostList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Post.objects.order_by('-created_at')
+    serializer_class = PostSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
