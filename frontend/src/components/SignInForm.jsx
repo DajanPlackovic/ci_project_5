@@ -33,7 +33,7 @@ const SignInForm = () => {
       console.log('Set the user');
       setTokenTimestamp(data);
       console.log('Got to navigate');
-      // navigate(-1);
+      navigate(-1);
     } catch (err) {
       // Add error handling
     }
