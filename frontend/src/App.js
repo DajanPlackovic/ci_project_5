@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='App'>
       <MainNavBar />
-      <Container className='pt-4'>
+      <Container className='pt-4 d-flex justify-content-center'>
         <Routes>
           <Route path='/signin' element=<SignInForm /> />
           <Route path='/signup' element=<SignUpForm /> />
