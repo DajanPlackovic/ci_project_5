@@ -31,6 +31,7 @@ urlpatterns = [
     ),
     path('api/posts/', include('posts.urls')),
     path('api/profiles/', include('profiles.urls')),
+    path('api/upload/', include('upload.urls'))
 ]
 
 # handler404 = TemplateView.as_view(template_name='index.html')

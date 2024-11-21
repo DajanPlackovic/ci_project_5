@@ -110,6 +110,7 @@ INSTALLED_APPS = [
 
     'profiles',
     'posts',
+    'upload',
 ]
 
 MIDDLEWARE = [
