@@ -19,13 +19,14 @@ const EditorPage = () => {
   const quillRef = useRef();
 
   const handleSubmit = async () => {
-    const delta = quillRef.current.getContents();
+    const delta = JSON.stringify(quillRef.current.getContents());
     const html = quillRef.current.root.innerHTML;
     try {
-      const { data } = await axiosReq.post('/api/posts/', {
-        delta,
-        html,
-      });
+      const text = JSON.stringify({ delta, html });
+      console.log(text);
+      console.log(typeof text);
+      const { data } = await axiosReq.post('/posts/', { text });
+      console.log(data);
     } catch (err) {
       console.log(err);
     }

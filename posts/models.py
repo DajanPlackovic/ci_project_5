@@ -9,13 +9,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     text = QuillField()
-    html = models.TextField()
+    html = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.author}: {self.text.html}"
+        return f"{self.author}: {self.html}"
 
     def save(self, **kwargs):
         self.html = self.text.html
