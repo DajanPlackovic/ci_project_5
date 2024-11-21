@@ -70,7 +70,7 @@ function MainNavBar() {
             </button>
             {currentUser ? (
               <button onClick={logOut} className='nav-link'>
-                <span class='material-symbols-outlined'>logout</span>
+                <span className='material-symbols-outlined'>logout</span>
               </button>
             ) : (
               // <Link className='nav-link'>
