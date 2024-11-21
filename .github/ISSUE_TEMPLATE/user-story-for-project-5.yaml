@@ -1,0 +1,28 @@
+name: User Story for Project 5
+description: A template for the user stories for the fifth portfolio project.
+title: '[USER STORY] '
+labels: ['enhancement']
+projects: ['DajanPlackovic/3']
+assignees:
+  - DajanPlackovic
+body:
+  - type: textarea
+    id: user-story
+    attributes:
+      label: 'User Story'
+      description: Enter a User Story in the proper form
+      value: |
+        As a **role** I can **capability** so that **received benefit**
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 'Acceptance Criteria'
+      description: Enter Acceptence Criteria in a bulletpoint list
+      value: |
+        - AC1
+        - AC2
+    validations:
+      required: true
