@@ -2,7 +2,7 @@ name: User Story for Project 5
 description: A template for the user stories for the fifth portfolio project.
 title: '[USER STORY] '
 labels: ['enhancement']
-projects: ['DajanPlackovic/3']
+projects: ['DajanPlackovic/4']
 assignees:
   - DajanPlackovic
 body:

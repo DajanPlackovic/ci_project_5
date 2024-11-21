@@ -2,7 +2,7 @@ name: Bug for Project 5
 description: A template for issues and bugs for the fifth portfolio project.
 title: '[BUG] '
 labels: ['bug']
-projects: ['DajanPlackovic/3']
+projects: ['DajanPlackovic/4']
 assignees:
   - DajanPlackovic
 body:
