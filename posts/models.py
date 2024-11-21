@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
 from django_quill.fields import QuillField
@@ -8,9 +9,14 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     text = QuillField()
+    html = models.TextField()
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.author}: {self.text.html}"
+
+    def save(self, **kwargs):
+        self.html = self.text.html
+        super().save(**kwargs)

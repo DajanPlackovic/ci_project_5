@@ -6,6 +6,8 @@ import 'quill/dist/quill.snow.css';
 import '../styles/EditorPage.css';
 import Button from 'react-bootstrap/esm/Button';
 
+import { axiosReq } from '../api/axiosDefaults';
+
 const Delta = Quill.import('delta');
 
 const EditorPage = () => {
@@ -16,9 +18,17 @@ const EditorPage = () => {
   // Use a ref to access the quill instance directly
   const quillRef = useRef();
 
-  const handleSubmit = () => {
-    console.log(quillRef.current.getContents()); // this is how I get the delta
-    console.log(quillRef.current.root.innerHTML); // this is how I get the HTML for the database
+  const handleSubmit = async () => {
+    const delta = quillRef.current.getContents();
+    const html = quillRef.current.root.innerHTML;
+    try {
+      const { data } = await axiosReq.post('/api/posts/', {
+        delta,
+        html,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
