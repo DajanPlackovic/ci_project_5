@@ -2,7 +2,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import { useTheme, useSetTheme } from '../contexts/ThemeContext';
+import {
+  useTheme,
+  useSetTheme,
+  useToggleTheme,
+} from '../contexts/ThemeContext';
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -13,19 +17,10 @@ import { axiosReq } from '../api/axiosDefaults';
 
 function MainNavBar() {
   const theme = useTheme();
-  const setTheme = useSetTheme();
+  const toggleTheme = useToggleTheme();
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-    console.log(currentUser);
-  };
 
   const [userImage, setUserImage] = useState(null);
 
