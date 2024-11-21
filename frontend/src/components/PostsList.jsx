@@ -26,7 +26,7 @@ const PostsList = () => {
               <span className='d-inline-block'>{post.created_at}</span>
             </Card.Header>
             <Card.Body>
-              <Card.Text>{parse(post.html)}</Card.Text>
+              <article className='card-text'>{parse(post.html)}</article>
             </Card.Body>
           </Card>
         ))
