@@ -15,7 +15,11 @@ class UploadView(APIView):
     @staticmethod
     def post(request):
         file = request.data.get('image')
-        print(file)
+
+        if file.size > 2 * 1024 * 1024:
+            return Response({
+                'error': 'File too large. Maximum file size is 2MB.'
+            }, status=400)
 
         upload_data = cloudinary.uploader.upload(file)
         return Response({
