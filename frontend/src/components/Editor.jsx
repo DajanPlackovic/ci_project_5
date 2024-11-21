@@ -1,6 +1,8 @@
 import React, { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
 import { Quill } from 'react-quill';
 import { axiosReq } from '../api/axiosDefaults';
+import 'quill/dist/quill.bubble.css';
+import '../styles/Editor.css';
 
 // Editor is an uncontrolled React component
 const Editor = forwardRef(
@@ -9,9 +11,6 @@ const Editor = forwardRef(
     const defaultValueRef = useRef(defaultValue);
     const onTextChangeRef = useRef(onTextChange);
     const onSelectionChangeRef = useRef(onSelectionChange);
-
-    // taken from here: https://github.com/slab/quill/issues/1120#issuecomment-808467758
-    const BubbleTheme = Quill.import('themes/bubble');
 
     useLayoutEffect(() => {
       onTextChangeRef.current = onTextChange;
@@ -43,7 +42,7 @@ const Editor = forwardRef(
         container.ownerDocument.createElement('div')
       );
       const quill = new Quill(editorContainer, {
-        theme: 'snow',
+        theme: 'bubble',
         modules: {
           toolbar: {
             container: [
@@ -53,7 +52,7 @@ const Editor = forwardRef(
             handlers: { image: imageHandler },
           },
         },
-        placeholder: 'Write something...',
+        placeholder: 'Write here! Select text or right click for more options.',
       });
 
       ref.current = quill;
@@ -73,6 +72,12 @@ const Editor = forwardRef(
           formData.append('image', file);
 
           await uploadFiles(file, quill);
+
+          // https://stackoverflow.com/questions/48678236/setting-the-cursor-position-after-setting-a-new-delta-in-quill
+          setTimeout(
+            () => quill.setSelection(quill.getSelection().index + 10, 0),
+            0
+          );
         };
       }
 

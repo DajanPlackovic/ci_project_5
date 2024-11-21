@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react';
 import Editor from './Editor';
 import Col from 'react-bootstrap/Col';
 
-import 'quill/dist/quill.snow.css';
 import '../styles/EditorPage.css';
 import Button from 'react-bootstrap/esm/Button';
 
@@ -35,12 +34,21 @@ const EditorPage = () => {
 
   return (
     <Col className='p-2 col-12 col-md-8 col-lg-6'>
-      <Editor
-        ref={quillRef}
-        readOnly={readOnly}
-        onSelectionChange={setRange}
-        onTextChange={setLastChange}
-      />
+      {/* taken from here: https://github.com/slab/quill/issues/1120#issuecomment-808467758 */}
+      <div
+        onContextMenu={(e) => {
+          e.preventDefault();
+          quillRef.current.theme.tooltip.edit();
+          quillRef.current.theme.tooltip.show();
+          return false;
+        }}>
+        <Editor
+          ref={quillRef}
+          readOnly={readOnly}
+          onSelectionChange={setRange}
+          onTextChange={setLastChange}
+        />
+      </div>
       <Button onClick={handleSubmit} className='px-4 mt-2 w-100'>
         Post
       </Button>
