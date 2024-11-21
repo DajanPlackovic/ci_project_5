@@ -1,6 +1,7 @@
 import { Quill } from 'react-quill';
 import React, { useRef, useState } from 'react';
 import Editor from './Editor';
+import Col from 'react-bootstrap/Col';
 
 import 'quill/dist/quill.snow.css';
 import '../styles/EditorPage.css';
@@ -33,15 +34,17 @@ const EditorPage = () => {
   };
 
   return (
-    <div>
+    <Col className='p-2 col-12 col-md-8 col-lg-6'>
       <Editor
         ref={quillRef}
         readOnly={readOnly}
         onSelectionChange={setRange}
         onTextChange={setLastChange}
       />
-      <Button onClick={handleSubmit}>Post</Button>
-    </div>
+      <Button onClick={handleSubmit} className='px-4 mt-2 w-100'>
+        Post
+      </Button>
+    </Col>
   );
 };
 
