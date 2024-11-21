@@ -10,6 +10,9 @@ const Editor = forwardRef(
     const onTextChangeRef = useRef(onTextChange);
     const onSelectionChangeRef = useRef(onSelectionChange);
 
+    // taken from here: https://github.com/slab/quill/issues/1120#issuecomment-808467758
+    const BubbleTheme = Quill.import('themes/bubble');
+
     useLayoutEffect(() => {
       onTextChangeRef.current = onTextChange;
       onSelectionChangeRef.current = onSelectionChange;
