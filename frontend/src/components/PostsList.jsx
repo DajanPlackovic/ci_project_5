@@ -20,7 +20,7 @@ const PostsList = () => {
     <Container className='p-2 pt-4'>
       {posts.length ? (
         posts.map((post) => (
-          <Card key={post.id} className='col-12 col-md-8 col-lg-6 m-auto'>
+          <Card key={post.id} className='col-12 col-md-8 col-lg-6 m-auto mt-3'>
             <Card.Header className='d-flex justify-content-between'>
               <span className='d-inline-block'>@{post.author}</span>
               <span className='d-inline-block'>{post.created_at}</span>
