@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { GlobalErrorProvider } from './contexts/GlobalErrorContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,9 @@ root.render(
     <Router>
       <ThemeProvider>
         <CurrentUserProvider>
-          <App />
+          <GlobalErrorProvider>
+            <App />
+          </GlobalErrorProvider>
         </CurrentUserProvider>
       </ThemeProvider>
     </Router>

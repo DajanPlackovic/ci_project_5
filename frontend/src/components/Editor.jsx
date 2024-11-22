@@ -3,6 +3,7 @@ import { Quill } from 'react-quill';
 import { axiosReq } from '../api/axiosDefaults';
 import 'quill/dist/quill.bubble.css';
 import '../styles/Editor.css';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 // Editor is an uncontrolled React component
 const Editor = forwardRef(
@@ -21,6 +22,8 @@ const Editor = forwardRef(
       ref.current?.enable(!readOnly);
     }, [ref, readOnly]);
 
+    const raiseError = useRaiseError();
+
     useEffect(() => {
       // Modified code from https://www.c-sharpcorner.com/article/how-to-add-image-upload-control-in-react-quill-rich-text-editor/
       async function uploadFiles(uploadFileObj, quillObj) {
@@ -33,7 +36,8 @@ const Editor = forwardRef(
           const range = quillObj.getSelection();
           quillObj.insertEmbed(range.index, 'image', data.data.secure_url);
         } catch (err) {
-          console.log(err); // better error handling
+          // console.log(err); // better error handling
+          raiseError(err);
         }
       }
 

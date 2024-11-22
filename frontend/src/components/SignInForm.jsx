@@ -7,6 +7,7 @@ import { setTokenTimestamp } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useRedirect } from '../hooks/useRedirect';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 const SignInForm = () => {
   useRedirect('loggedIn');
@@ -27,6 +28,8 @@ const SignInForm = () => {
     });
   };
 
+  const raiseError = useRaiseError();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,6 +40,7 @@ const SignInForm = () => {
       navigate(-1);
     } catch (err) {
       // Add error handling
+      raiseError(err);
     }
   };
 

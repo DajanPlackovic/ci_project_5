@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/esm/Container';
 import EditorPage from './components/EditorPage';
 import PostsList from './components/PostsList';
 import PostDetail from './components/PostDetail';
+import ErrorContainer from './components/ErrorContainer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </Container>
+      <ErrorContainer />
     </div>
   );
 }

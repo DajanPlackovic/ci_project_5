@@ -8,9 +8,12 @@ import Button from 'react-bootstrap/esm/Button';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { useRedirect } from '../hooks/useRedirect';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Post from './Post';
 
 const EditorPage = () => {
+  const raiseError = useRaiseError();
+
   useRedirect('loggedOut');
 
   // Use a ref to access the quill instance directly
@@ -24,7 +27,7 @@ const EditorPage = () => {
       const { data } = await axiosReq.post('/posts/', { text });
       navigate(`/posts/${data.id}`);
     } catch (err) {
-      console.log(err);
+      raiseError(err);
     }
   };
 
@@ -43,7 +46,7 @@ const EditorPage = () => {
       month: 'short',
       year: 'numeric',
     });
-    const author = currentUser?.username; // change this to handle after fixing getting current user
+    const author = currentUser?.username || 'dave'; // change this to handle after fixing getting current user
     setPostData({ author, created_at: today });
   }, [currentUser?.username]);
 
