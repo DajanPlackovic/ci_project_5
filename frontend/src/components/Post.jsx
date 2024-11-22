@@ -5,7 +5,7 @@ import styles from '../styles/Post.module.css';
 
 import Editor from './Editor';
 
-const Post = ({ post, editPost, quillRef }) => {
+const Post = ({ post, editPost = false, quillRef }) => {
   return (
     <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 ${styles.Post}`}>
       <Card.Header className='d-flex justify-content-between'>

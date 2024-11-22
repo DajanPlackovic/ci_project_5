@@ -5,6 +5,7 @@ import SignUpForm from './components/SignUpForm';
 import Container from 'react-bootstrap/esm/Container';
 import EditorPage from './components/EditorPage';
 import PostsList from './components/PostsList';
+import PostDetail from './components/PostDetail';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/signup' element=<SignUpForm /> />
           <Route path='/editor-page' element=<EditorPage /> />
           <Route path='/posts' element=<PostsList /> />
+          <Route path='/posts/:id' element=<PostDetail /> />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </Container>
