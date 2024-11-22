@@ -74,7 +74,7 @@ function MainNavBar() {
               // <Link className='nav-link'>
               //   <Image src={userImage} roundedCircle height='40' />
               // </Link>
-              <Nav.Link as={Link} to='/signin'>
+              <Nav.Link as={Link} to='/signin' className='text-center'>
                 <span className='material-symbols-outlined'>
                   account_circle
                 </span>
