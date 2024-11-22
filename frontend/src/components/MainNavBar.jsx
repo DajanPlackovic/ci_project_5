@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import {
   useTheme,
-  useSetTheme,
   useToggleTheme,
 } from '../contexts/ThemeContext';
 import {
@@ -42,7 +41,7 @@ function MainNavBar() {
     };
 
     getUserImage();
-  }, [currentUser]);
+  }, [currentUser, raiseError]);
 
   const logOut = async () => {
     try {
