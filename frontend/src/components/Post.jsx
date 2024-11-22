@@ -21,7 +21,7 @@ const Post = ({ post, editPost = false, quillRef = null }) => {
               quillRef.current.theme.tooltip.show();
               return false;
             }}>
-            <Editor ref={quillRef} />
+            <Editor ref={quillRef} post />
           </div>
         ) : (
           <article className='card-text'>{parse(post.html)}</article>

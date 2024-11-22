@@ -2,14 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Post from './Post';
 import Comment from './Comment';
-import { useParams } from 'react-router-dom';
+import CommentForm from './CommentForm';
+import { Link, useParams } from 'react-router-dom';
 
 import { axiosRes } from '../api/axiosDefaults';
 import Spinner from 'react-bootstrap/esm/Spinner';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import Card from 'react-bootstrap/Card';
 
 const PostDetail = () => {
   const raiseError = useRaiseError();
+  const currentUser = useCurrentUser();
 
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
@@ -35,15 +39,32 @@ const PostDetail = () => {
   return post ? (
     <>
       <Post post={post} />
-      {comments.count ? (
-        <Col className='col-12 col-md-8 col-lg-6 m-auto p-2 pt-4'>
-          {comments.results.map((comment) => (
-            <Comment {...comment} />
-          ))}
-        </Col>
-      ) : (
-        <span>'No comment'</span>
-      )}
+      <Col className='col-12 col-md-8 col-lg-6 m-auto p-2 pt-4'>
+        <h2>Comments</h2>
+        {currentUser ? (
+          <CommentForm post={post} setComments={setComments} />
+        ) : (
+          <Card>
+            <Card.Body>
+              <Link
+                to='/signin'
+                className='btn btn-primary d-flex justify-content-center'>
+                <span className='material-symbols-outlined'>
+                  account_circle
+                </span>{' '}
+                <p className='px-4 m-0'>Log in to comment</p>
+              </Link>
+            </Card.Body>
+          </Card>
+        )}
+        {comments.count ? (
+          comments.results.map((comment, idx) => (
+            <Comment key={idx} {...comment} />
+          ))
+        ) : (
+          <span>'No comment'</span>
+        )}
+      </Col>
     </>
   ) : (
     <Spinner role='status' className='m-auto' />
