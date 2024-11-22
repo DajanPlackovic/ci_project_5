@@ -15,15 +15,7 @@ const Post = ({ post, editPost = false, quillRef = null }) => {
       </Card.Header>
       <Card.Body>
         {editPost ? (
-          <div
-            onContextMenu={(e) => {
-              e.preventDefault();
-              quillRef.current.theme.tooltip.edit();
-              quillRef.current.theme.tooltip.show();
-              return false;
-            }}>
-            <Editor ref={quillRef} post />
-          </div>
+          <Editor quillRef={quillRef} post />
         ) : (
           <article className='card-text'>{parse(post.html)}</article>
         )}

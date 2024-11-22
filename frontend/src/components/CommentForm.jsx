@@ -40,15 +40,7 @@ const CommentForm = (props) => {
     <Card
       className={`col-12 col-md-8 col-lg-6 m-auto mt-3 w-100 ${styles.CardBody}`}>
       <Card.Body>
-        <div
-          onContextMenu={(e) => {
-            e.preventDefault();
-            quillRef.current.theme.tooltip.edit();
-            quillRef.current.theme.tooltip.show();
-            return false;
-          }}>
-          <Editor ref={quillRef} />
-        </div>
+        <Editor quillRef={quillRef} />
       </Card.Body>
       <Card.Footer>
         <Button onClick={handleSubmit}>Comment</Button>

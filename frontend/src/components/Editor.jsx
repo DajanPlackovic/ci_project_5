@@ -6,7 +6,7 @@ import '../styles/Editor.css';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 // Editor is an uncontrolled React component
-const Editor = forwardRef(({ post }, ref) => {
+const BaseEditor = forwardRef(({ post }, ref) => {
   const containerRef = useRef(null);
 
   const raiseError = useRaiseError();
@@ -89,6 +89,20 @@ const Editor = forwardRef(({ post }, ref) => {
 
   return <div ref={containerRef}></div>;
 });
+
+const Editor = ({ post, quillRef }) => {
+  return (
+    <div
+      onContextMenu={(e) => {
+        e.preventDefault();
+        quillRef.current.theme.tooltip.edit();
+        quillRef.current.theme.tooltip.show();
+        return false;
+      }}>
+      <BaseEditor ref={quillRef} post={post} />
+    </div>
+  );
+};
 
 Editor.displayName = 'Editor';
 
