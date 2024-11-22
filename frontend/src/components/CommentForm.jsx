@@ -8,7 +8,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useParams } from 'react-router-dom';
 
 const CommentForm = (props) => {
-  const { post, setComments } = props;
+  const { post, setComments, setPost } = props;
 
   const quillRef = createRef();
 
@@ -23,8 +23,14 @@ const CommentForm = (props) => {
         text,
         post: post.id,
       });
-      console.log(data);
-      setComments((prevState) => [...prevState, data]);
+      setComments((prevState) => ({
+        ...prevState,
+        results: [data, ...prevState.results],
+      }));
+      setPost((prevState) => ({
+        ...prevState,
+        comments_count: prevState.comments_count + 1,
+      }));
     } catch (err) {
       raiseError(err);
     }
