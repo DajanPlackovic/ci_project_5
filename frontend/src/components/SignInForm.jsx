@@ -39,7 +39,6 @@ const SignInForm = () => {
       setTokenTimestamp(data);
       navigate(-1);
     } catch (err) {
-      // Add error handling
       raiseError(err);
     }
   };

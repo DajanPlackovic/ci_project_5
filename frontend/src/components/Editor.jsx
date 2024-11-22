@@ -36,7 +36,6 @@ const Editor = forwardRef(
           const range = quillObj.getSelection();
           quillObj.insertEmbed(range.index, 'image', data.data.secure_url);
         } catch (err) {
-          // console.log(err); // better error handling
           raiseError(err);
         }
       }

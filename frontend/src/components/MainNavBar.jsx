@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 function MainNavBar() {
   const theme = useTheme();
@@ -21,6 +22,8 @@ function MainNavBar() {
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const raiseError = useRaiseError();
 
   const [userImage, setUserImage] = useState(null);
 
@@ -33,7 +36,7 @@ function MainNavBar() {
           );
           setUserImage(profile.data.image);
         } catch (err) {
-          console.log(err);
+          raiseError(err);
         }
       }
     };
@@ -47,7 +50,7 @@ function MainNavBar() {
       setCurrentUser(null);
       setUserImage(null);
     } catch (err) {
-      console.log(err);
+      raiseError(err);
     }
   };
 

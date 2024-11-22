@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom';
 
 import { axiosRes } from '../api/axiosDefaults';
 import Spinner from 'react-bootstrap/esm/Spinner';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 const PostDetail = () => {
+  const raiseError = useRaiseError();
+
   const [post, setPost] = useState(null);
   const { id } = useParams();
 
@@ -15,7 +18,7 @@ const PostDetail = () => {
         const { data } = await axiosRes.get(`/posts/${id}`);
         setPost(data);
       } catch (err) {
-        console.log(err); // better error handling
+        raiseError(err);
       }
     };
 
