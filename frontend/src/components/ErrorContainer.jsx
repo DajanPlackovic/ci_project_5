@@ -15,11 +15,11 @@ const ErrorContainer = () => {
   };
 
   return (
-    <ToastContainer position='top-center' className='mt-3'>
+    <ToastContainer position='top-center' className='mt-3 d-flex flex-column'>
       {globalErrors?.map((error, idx) => (
         <Toast
           bg='danger'
-          key={error + Date.now()}
+          key={error + idx}
           className='d-inline-block m-1'
           onClose={() => clearError(idx)}>
           <Toast.Header>
