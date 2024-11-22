@@ -5,12 +5,12 @@ import styles from '../styles/Post.module.css';
 
 import Editor from './Editor';
 
-const Post = ({ post, editPost = false, quillRef }) => {
+const Post = ({ post, editPost = false, quillRef = null }) => {
   return (
     <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 ${styles.Post}`}>
       <Card.Header className='d-flex justify-content-between'>
-        <span className='d-inline-block'>@{post.author}</span>
-        <span className='d-inline-block'>{post.created_at}</span>
+        <span className='d-inline-block'>@{post?.author}</span>
+        <span className='d-inline-block'>{post?.created_at}</span>
       </Card.Header>
       <Card.Body>
         {editPost ? (

@@ -43,9 +43,9 @@ const EditorPage = () => {
       month: 'short',
       year: 'numeric',
     });
-    const author = currentUser.username; // change this to handle after fixing getting current user
+    const author = currentUser?.username; // change this to handle after fixing getting current user
     setPostData({ author, created_at: today });
-  }, [currentUser.username]);
+  }, [currentUser?.username]);
 
   return (
     <>
