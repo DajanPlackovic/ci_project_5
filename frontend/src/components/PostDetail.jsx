@@ -40,7 +40,13 @@ const PostDetail = () => {
     <>
       <Post post={post} />
       <Col className='col-12 col-md-8 col-lg-6 m-auto p-2 pt-4'>
-        <h2>Comments</h2>
+        <div className='d-flex justify-content-between'>
+          <h2>Comments</h2>
+          <span className='d-flex align-items-center'>
+            <span className='material-symbols-outlined fs-6 mx-1'>comment</span>
+            {post.comment_count}
+          </span>
+        </div>
         {currentUser ? (
           <CommentForm post={post} setComments={setComments} />
         ) : (
