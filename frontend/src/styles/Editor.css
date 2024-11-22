@@ -1,3 +1,7 @@
+.ql-editor {
+  overflow-y: inherit !important;
+}
+
 .ql-editor.ql-blank::before {
   color: inherit;
 }
