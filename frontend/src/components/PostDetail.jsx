@@ -23,7 +23,7 @@ const PostDetail = () => {
     };
 
     getPosts();
-  }, [id]);
+  }, [raiseError, id]);
 
   return post ? (
     <Post post={post} />
