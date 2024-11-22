@@ -10,6 +10,8 @@ import Spinner from 'react-bootstrap/esm/Spinner';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import Card from 'react-bootstrap/Card';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../utils/utils';
 
 const PostDetail = () => {
   const raiseError = useRaiseError();
@@ -48,7 +50,11 @@ const PostDetail = () => {
           </span>
         </div>
         {currentUser ? (
-          <CommentForm post={post} setComments={setComments} />
+          <CommentForm
+            post={post}
+            setComments={setComments}
+            setPost={setPost}
+          />
         ) : (
           <Card>
             <Card.Body>
@@ -63,12 +69,18 @@ const PostDetail = () => {
             </Card.Body>
           </Card>
         )}
-        {comments.count ? (
-          comments.results.map((comment, idx) => (
-            <Comment key={idx} {...comment} />
-          ))
-        ) : (
-          <span>'No comment'</span>
+        {post.comment_count && (
+          <InfiniteScroll
+            dataLength={comments.results?.length}
+            loader={<Spinner role='status' className='d-block m-auto' />}
+            hasMore={!!comments.next}
+            next={() => {
+              fetchMoreData(comments, setComments);
+            }}>
+            {comments.results.map((comment, idx) => (
+              <Comment key={idx} {...comment} />
+            ))}
+          </InfiniteScroll>
         )}
       </Col>
     </>
