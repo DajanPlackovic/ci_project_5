@@ -1,12 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
+import Avatar from './Avatar';
 
-const Comment = ({ author, created_at, html }) => {
+const Comment = ({ author, profile_img, handle, created_at, html }) => {
   return (
     <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 w-100`}>
       <Card.Header className='d-flex justify-content-between'>
-        <span className='d-inline-block'>@{author}</span>
+        <Avatar author={author} profile_img={profile_img} handle={handle} />
         <span className='d-inline-block'>{created_at}</span>
       </Card.Header>
       <Card.Body>
