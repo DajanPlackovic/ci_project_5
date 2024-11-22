@@ -11,20 +11,20 @@ const Editor = forwardRef(({ post }, ref) => {
 
   const raiseError = useRaiseError();
 
-  const options = post
-    ? [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        ['link', 'image'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-      ]
-    : [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['link'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-      ];
-
   useEffect(() => {
+    const options = post
+      ? [
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          ['link', 'image'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+        ]
+      : [
+          ['bold', 'italic', 'underline', 'strike'],
+          ['link'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+        ];
+
     // Modified code from https://www.c-sharpcorner.com/article/how-to-add-image-upload-control-in-react-quill-rich-text-editor/
     async function uploadFiles(uploadFileObj, quillObj) {
       try {
@@ -85,7 +85,7 @@ const Editor = forwardRef(({ post }, ref) => {
       ref.current = null;
       container.innerHTML = '';
     };
-  }, [ref, options, raiseError]);
+  }, [ref, post, raiseError]);
 
   return <div ref={containerRef}></div>;
 });
