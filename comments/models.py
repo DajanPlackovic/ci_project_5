@@ -11,6 +11,10 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     text = QuillField()
     html = models.TextField(blank=True)
+    response_to = models.ForeignKey(
+        'self', on_delete=models.DO_NOTHING,
+        related_name='responses', blank=True, null=True
+    )
 
     class Meta:
         ordering = ['-created_at']

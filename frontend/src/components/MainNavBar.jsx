@@ -2,10 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import {
-  useTheme,
-  useToggleTheme,
-} from '../contexts/ThemeContext';
+import { useTheme, useToggleTheme } from '../contexts/ThemeContext';
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -54,7 +51,7 @@ function MainNavBar() {
   };
 
   return (
-    <Navbar expand='lg' className='bg-body-tertiary'>
+    <Navbar expand='lg' className='bg-body-tertiary sticky-top'>
       <Container>
         <Navbar.Brand href='#home'>Project 5</Navbar.Brand>
         <Navbar.Toggle aria-controls='main-navbar-nav' />
