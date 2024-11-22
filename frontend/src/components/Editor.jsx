@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 import { Quill } from 'react-quill';
 import { axiosReq } from '../api/axiosDefaults';
 import 'quill/dist/quill.bubble.css';
@@ -85,7 +85,7 @@ const Editor = forwardRef(({ post }, ref) => {
       ref.current = null;
       container.innerHTML = '';
     };
-  }, [ref]);
+  }, [ref, options, raiseError]);
 
   return <div ref={containerRef}></div>;
 });
