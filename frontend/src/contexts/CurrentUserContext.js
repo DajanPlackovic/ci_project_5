@@ -17,18 +17,18 @@ export const CurrentUserProvider = ({ children }) => {
 
   const raiseError = useRaiseError();
 
-  const handleMount = async () => {
-    try {
-      const { data } = await axiosRes.get('dj-rest-auth/user/');
-      setCurrentUser(data);
-    } catch (err) {
-      if (err.status !== 401) raiseError(err);
-    }
-  };
-
   useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosRes.get('dj-rest-auth/user/');
+        setCurrentUser(data);
+      } catch (err) {
+        if (err.status !== 401) raiseError(err);
+      }
+    };
+
     handleMount();
-  }, []);
+  }, [raiseError]);
 
   useMemo(() => {
     axiosReq.interceptors.request.use(
