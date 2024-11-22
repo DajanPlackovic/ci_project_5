@@ -22,7 +22,7 @@ const EditorPage = () => {
     try {
       const text = JSON.stringify({ delta, html });
       const { data } = await axiosReq.post('/posts/', { text });
-      console.log(data);
+      navigate(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
     }
