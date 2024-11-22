@@ -37,10 +37,13 @@ const SignUpForm = () => {
 
     try {
       await axios.post('/dj-rest-auth/registration/', formData);
-      const { data } = await axios.post('/dj-rest-auth/login/', formData);
+      const { data } = await axios.post('/dj-rest-auth/login/', {
+        username: formData.username,
+        password: formData.password1,
+      });
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      navigate(-1);
+      navigate(-2);
     } catch (err) {
       setErrors(err.response?.data);
     }
