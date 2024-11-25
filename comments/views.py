@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Comment
-from .serializers import CommentSerializer
+from .serializers import CommentSerializer, CommentSerializerDetail
 from project_5.permissions import IsOwnerOrReadOnly
 
 
@@ -19,4 +19,4 @@ class CommentList(generics.ListCreateAPIView):
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.order_by('-created_at')
-    serializer_class = CommentSerializer
+    serializer_class = CommentSerializerDetail

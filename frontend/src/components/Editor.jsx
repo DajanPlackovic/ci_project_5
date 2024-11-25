@@ -6,7 +6,7 @@ import '../styles/Editor.css';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 // Editor is an uncontrolled React component
-const BaseEditor = forwardRef(({ post }, ref) => {
+const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
   const containerRef = useRef(null);
 
   const raiseError = useRaiseError();
@@ -55,6 +55,10 @@ const BaseEditor = forwardRef(({ post }, ref) => {
       placeholder: 'Write here! Select text or right click for more options.',
     });
 
+    if (defaultValue) {
+      quill.setContents(quill.clipboard.convert(defaultValue));
+    }
+
     ref.current = quill;
 
     function imageHandler() {
@@ -85,12 +89,12 @@ const BaseEditor = forwardRef(({ post }, ref) => {
       ref.current = null;
       container.innerHTML = '';
     };
-  }, [ref, post, raiseError]);
+  }, [ref, post, raiseError, defaultValue]);
 
   return <div ref={containerRef}></div>;
 });
 
-const Editor = ({ post, quillRef }) => {
+const Editor = ({ post = false, quillRef, defaultValue = null }) => {
   return (
     <div
       onContextMenu={(e) => {
@@ -99,7 +103,7 @@ const Editor = ({ post, quillRef }) => {
         quillRef.current.theme.tooltip.show();
         return false;
       }}>
-      <BaseEditor ref={quillRef} post={post} />
+      <BaseEditor ref={quillRef} post={post} defaultValue={defaultValue} />
     </div>
   );
 };

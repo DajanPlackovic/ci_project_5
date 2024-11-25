@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
 import Avatar from './Avatar';
@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
+import Editor from './Editor';
+import { getQuillDelta } from '../utils/utils';
 
 const Comment = ({
   id,
@@ -21,14 +23,27 @@ const Comment = ({
   const raiseError = useRaiseError();
   const [displayButtons, setDisplayButtons] = useState(is_owner);
   const [commentText, setCommentText] = useState(html);
+  const [editMode, setEditMode] = useState(false);
+  const quillRef = useRef();
 
   const editComment = async () => {
-    console.log('edit comment');
+    setEditMode(true);
+  };
+
+  const submitEdit = async () => {
+    try {
+      const text = getQuillDelta(quillRef);
+      const { data } = await axiosRes.put(`/comments/${id}/`, { text });
+      setCommentText(data.html);
+      setEditMode(false);
+    } catch (err) {
+      raiseError(err);
+    }
   };
 
   const deleteComment = async () => {
     try {
-      await axiosRes.delete(`/comments/${id}`);
+      await axiosRes.delete(`/comments/${id}/`);
       setDisplayButtons(false);
       setCommentText('<p>DELETED</p>');
     } catch (err) {
@@ -43,23 +58,36 @@ const Comment = ({
         <span className='d-inline-block'>{created_at}</span>
       </Card.Header>
       <Card.Body>
-        <article className='card-text'>{parse(commentText)}</article>
+        {editMode ? (
+          <Editor quillRef={quillRef} defaultValue={commentText} />
+        ) : (
+          <article className='card-text'>{parse(commentText)}</article>
+        )}
       </Card.Body>
       {currentUser && (
         <Card.Footer className='d-flex justify-content-end'>
-          {displayButtons && !deleted && (
-            <>
-              <Button
-                className='d-flex align-items-center p-1'
-                onClick={editComment}>
-                <span className='material-symbols-outlined'>edit</span>
-              </Button>
-              <Button
-                className='btn-danger ms-2 d-flex align-items-center p-1'
-                onClick={deleteComment}>
-                <span className='material-symbols-outlined'>delete</span>
-              </Button>
-            </>
+          {editMode ? (
+            <Button
+              className='d-flex align-items-center p-1'
+              onClick={submitEdit}>
+              <span className='material-symbols-outlined'>send</span>
+            </Button>
+          ) : (
+            displayButtons &&
+            !deleted && (
+              <>
+                <Button
+                  className='d-flex align-items-center p-1'
+                  onClick={editComment}>
+                  <span className='material-symbols-outlined'>edit</span>
+                </Button>
+                <Button
+                  className='btn-danger ms-2 d-flex align-items-center p-1'
+                  onClick={deleteComment}>
+                  <span className='material-symbols-outlined'>delete</span>
+                </Button>
+              </>
+            )
           )}
         </Card.Footer>
       )}

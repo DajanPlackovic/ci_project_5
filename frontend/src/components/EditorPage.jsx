@@ -10,6 +10,7 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { useRedirect } from '../hooks/useRedirect';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Post from './Post';
+import { getQuillDelta } from '../utils/utils';
 
 const EditorPage = () => {
   const raiseError = useRaiseError();
@@ -20,10 +21,8 @@ const EditorPage = () => {
   const quillRef = useRef();
 
   const handleSubmit = async () => {
-    const delta = JSON.stringify(quillRef.current.getContents());
-    const html = quillRef.current.root.innerHTML;
     try {
-      const text = JSON.stringify({ delta, html });
+      const text = getQuillDelta(quillRef);
       const { data } = await axiosReq.post('/posts/', { text });
       navigate(`/posts/${data.id}`);
     } catch (err) {

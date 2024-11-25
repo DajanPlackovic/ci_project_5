@@ -30,3 +30,9 @@ export const shouldRefreshToken = () => {
 export const removeTokenTimestamp = () => {
   localStorage.removeItem('refreshTokenTimestamp');
 };
+
+export const getQuillDelta = (quillRef) => {
+  const delta = JSON.stringify(quillRef.current.getContents());
+  const html = quillRef.current.root.innerHTML;
+  return JSON.stringify({ delta, html });
+};
