@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
 import Avatar from './Avatar';
 import Button from 'react-bootstrap/Button';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 const Comment = ({
   id,
@@ -16,15 +17,23 @@ const Comment = ({
   html,
   deleted,
 }) => {
-  const currentUser = useCurrentUser;
+  const currentUser = useCurrentUser();
+  const raiseError = useRaiseError();
+  const [displayButtons, setDisplayButtons] = useState(is_owner);
+  const [commentText, setCommentText] = useState(html);
 
   const editComment = async () => {
     console.log('edit comment');
   };
 
   const deleteComment = async () => {
-    const { data } = await axiosRes.delete(`/comments/${id}`);
-    console.log(data);
+    try {
+      await axiosRes.delete(`/comments/${id}`);
+      setDisplayButtons(false);
+      setCommentText('<p>DELETED</p>');
+    } catch (err) {
+      raiseError(err);
+    }
   };
 
   return (
@@ -34,11 +43,11 @@ const Comment = ({
         <span className='d-inline-block'>{created_at}</span>
       </Card.Header>
       <Card.Body>
-        <article className='card-text'>{parse(html)}</article>
+        <article className='card-text'>{parse(commentText)}</article>
       </Card.Body>
       {currentUser && (
         <Card.Footer className='d-flex justify-content-end'>
-          {is_owner && !deleted && (
+          {displayButtons && !deleted && (
             <>
               <Button
                 className='d-flex align-items-center p-1'
