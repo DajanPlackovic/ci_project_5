@@ -14,3 +14,9 @@ class CommentList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Comment.objects.order_by('-created_at')
+    serializer_class = CommentSerializer

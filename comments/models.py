@@ -15,6 +15,7 @@ class Comment(models.Model):
         'self', on_delete=models.DO_NOTHING,
         related_name='responses', blank=True, null=True
     )
+    deleted = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -24,4 +25,10 @@ class Comment(models.Model):
 
     def save(self, **kwargs):
         self.html = self.text.html
+        super().save(**kwargs)
+
+    def delete(self, **kwargs):
+        self.deleted = True
+        self.text = None
+        self.html = "<p>DELETED</p>"
         super().save(**kwargs)
