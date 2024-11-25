@@ -5,20 +5,16 @@ import styles from '../styles/CommentForm.module.css';
 import Button from 'react-bootstrap/esm/Button';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosReq } from '../api/axiosDefaults';
-import { useParams } from 'react-router-dom';
+import { getQuillDelta } from '../utils/utils';
 
-const CommentForm = (props) => {
-  const { post, setComments, setPost } = props;
-
+const CommentForm = ({ post, setComments, setPost }) => {
   const quillRef = createRef();
 
   const raiseError = useRaiseError();
 
   const handleSubmit = async () => {
-    const delta = JSON.stringify(quillRef.current.getContents());
-    const html = quillRef.current.root.innerHTML;
     try {
-      const text = JSON.stringify({ delta, html });
+      const text = getQuillDelta(quillRef);
       const { data } = await axiosReq.post('/comments/', {
         text,
         post: post.id,
