@@ -77,8 +77,8 @@ const PostDetail = () => {
             next={() => {
               fetchMoreData(comments, setComments);
             }}>
-            {comments.results.map((comment, idx) => (
-              <Comment key={idx} {...comment} />
+            {comments.results.map((comment) => (
+              <Comment key={comment.id} {...comment} />
             ))}
           </InfiniteScroll>
         )}

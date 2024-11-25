@@ -25,7 +25,7 @@ const CommentForm = ({ post, setComments, setPost }) => {
       }));
       setPost((prevState) => ({
         ...prevState,
-        comments_count: prevState.comments_count + 1,
+        comment_count: prevState.comment_count + 1,
       }));
     } catch (err) {
       raiseError(err);
