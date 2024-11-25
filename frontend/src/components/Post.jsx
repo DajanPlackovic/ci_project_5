@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
 import styles from '../styles/Post.module.css';
 import Avatar from './Avatar';
-import Button from 'react-bootstrap/esm/Button';
 
 import Editor from './Editor';
 import { Link } from 'react-router-dom';
