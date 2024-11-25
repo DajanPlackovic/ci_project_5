@@ -89,7 +89,7 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
       ref.current = null;
       container.innerHTML = '';
     };
-  }, [ref, post, raiseError, defaultValue]);
+  }, [ref, post, defaultValue]);
 
   return <div ref={containerRef}></div>;
 });

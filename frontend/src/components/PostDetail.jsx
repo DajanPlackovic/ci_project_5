@@ -36,7 +36,7 @@ const PostDetail = () => {
     };
 
     getPosts();
-  }, [raiseError, id]);
+  }, [id]);
 
   return post ? (
     <>

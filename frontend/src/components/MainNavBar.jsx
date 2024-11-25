@@ -38,7 +38,7 @@ function MainNavBar() {
     };
 
     getUserImage();
-  }, [currentUser, raiseError]);
+  }, [currentUser]);
 
   const logOut = async () => {
     try {
