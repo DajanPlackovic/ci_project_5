@@ -69,7 +69,7 @@ const PostDetail = () => {
             </Card.Body>
           </Card>
         )}
-        {post.comment_count && (
+        {post.comment_count > 0 && (
           <InfiniteScroll
             dataLength={comments.results?.length}
             loader={<Spinner role='status' className='d-block m-auto' />}
