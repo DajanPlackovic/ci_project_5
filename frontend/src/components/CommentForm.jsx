@@ -38,8 +38,12 @@ const CommentForm = ({ post, setComments, setPost }) => {
       <Card.Body>
         <Editor quillRef={quillRef} />
       </Card.Body>
-      <Card.Footer>
-        <Button onClick={handleSubmit}>Comment</Button>
+      <Card.Footer className='d-flex justify-content-end'>
+        <Button
+          onClick={handleSubmit}
+          className='d-flex align-items-center p-1'>
+          <span className='material-symbols-outlined'>send</span>
+        </Button>
       </Card.Footer>
     </Card>
   );
