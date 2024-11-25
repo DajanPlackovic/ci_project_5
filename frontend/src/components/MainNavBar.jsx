@@ -53,7 +53,9 @@ function MainNavBar() {
   return (
     <Navbar expand='lg' className='bg-body-tertiary sticky-top'>
       <Container>
-        <Navbar.Brand href='#home'>Project 5</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'>
+          Project 5
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls='main-navbar-nav' />
         <Navbar.Collapse id='main-navbar-nav'>
           <Nav className='ms-auto'>

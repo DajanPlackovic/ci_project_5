@@ -14,6 +14,7 @@ function App() {
       <MainNavBar />
       <Container className='pt-4 d-flex flex-column justify-content-center'>
         <Routes>
+          <Route path='/' element=<PostsList /> />
           <Route path='/signin' element=<SignInForm /> />
           <Route path='/signup' element=<SignUpForm /> />
           <Route path='/editor-page' element=<EditorPage /> />
