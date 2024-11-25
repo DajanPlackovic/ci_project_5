@@ -32,7 +32,7 @@ const PostsList = () => {
             fetchMoreData(posts, setPosts);
           }}>
           {posts.results.map((post) => (
-            <Post key={post.id} post={post} />
+            <Post key={post.id} post={post} list />
           ))}
         </InfiniteScroll>
       ) : (
