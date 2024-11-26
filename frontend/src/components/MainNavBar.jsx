@@ -1,17 +1,19 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import { useTheme, useToggleTheme } from '../contexts/ThemeContext';
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from '../contexts/CurrentUserContext';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function MainNavBar() {
   const theme = useTheme();

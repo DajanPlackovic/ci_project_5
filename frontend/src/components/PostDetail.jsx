@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/esm/Spinner';
+
+import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { fetchMoreData } from '../utils/utils';
+import { axiosRes } from '../api/axiosDefaults';
 import Post from './Post';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
-import { Link, useParams } from 'react-router-dom';
-
-import { axiosRes } from '../api/axiosDefaults';
-import Spinner from 'react-bootstrap/esm/Spinner';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import Card from 'react-bootstrap/Card';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData } from '../utils/utils';
 
 const PostDetail = () => {
   const raiseError = useRaiseError();

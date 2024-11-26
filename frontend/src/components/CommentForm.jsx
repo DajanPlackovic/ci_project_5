@@ -1,11 +1,14 @@
 import React, { createRef } from 'react';
+
 import Card from 'react-bootstrap/Card';
-import Editor from './Editor';
-import styles from '../styles/CommentForm.module.css';
 import Button from 'react-bootstrap/esm/Button';
+
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosReq } from '../api/axiosDefaults';
 import { getQuillDelta } from '../utils/utils';
+import Editor from './Editor';
+
+import styles from '../styles/CommentForm.module.css';
 
 const CommentForm = ({ post, setComments, setPost }) => {
   const quillRef = createRef();

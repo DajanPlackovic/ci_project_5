@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
+
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
-import Editor from './Editor';
+
 import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { getQuillDelta } from '../utils/utils';
+import Editor from './Editor';
 
 const CommentEditForm = ({ id, commentText, setCommentText, setEditMode }) => {
   const quillRef = useRef();

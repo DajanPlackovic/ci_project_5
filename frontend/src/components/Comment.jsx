@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
-import Avatar from './Avatar';
+
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
+import Avatar from './Avatar';
 import CommentEditForm from './CommentEditForm';
 
 const Comment = ({

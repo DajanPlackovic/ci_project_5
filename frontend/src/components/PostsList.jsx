@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { axiosRes } from '../api/axiosDefaults';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 import Container from 'react-bootstrap/esm/Container';
 import Spinner from 'react-bootstrap/Spinner';
-import Post from './Post';
-import InfiniteScroll from 'react-infinite-scroll-component';
+
 import { fetchMoreData } from '../utils/utils';
+import { axiosRes } from '../api/axiosDefaults';
+import Post from './Post';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);

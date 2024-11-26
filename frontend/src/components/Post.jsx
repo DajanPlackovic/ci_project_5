@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import parse from 'html-react-parser';
-import styles from '../styles/Post.module.css';
-import Avatar from './Avatar';
-
-import PostEditForm from './PostEditForm';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
+
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
+
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosRes } from '../api/axiosDefaults';
+import PostEditForm from './PostEditForm';
+import Avatar from './Avatar';
+
+import styles from '../styles/Post.module.css';
 
 const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const raiseError = useRaiseError();

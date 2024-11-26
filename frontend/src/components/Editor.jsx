@@ -1,9 +1,11 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 import { Quill } from 'react-quill';
+
 import { axiosReq } from '../api/axiosDefaults';
+import { useRaiseError } from '../contexts/GlobalErrorContext';
+
 import 'quill/dist/quill.bubble.css';
 import '../styles/Editor.css';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
 
 // Editor is an uncontrolled React component
 const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
