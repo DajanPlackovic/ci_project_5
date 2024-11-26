@@ -9,6 +9,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useRedirect } from '../hooks/useRedirect';
 import Editor from './Editor';
 import Card from 'react-bootstrap/Card';
+import { useReblog, useSetReblog } from '../contexts/ReblogContext';
 import Reblog from './Reblog';
 
 const PostEditForm = ({
@@ -18,6 +19,8 @@ const PostEditForm = ({
   setEditMode = null,
 }) => {
   const raiseError = useRaiseError();
+  const reblog = useReblog();
+  const setReblog = useSetReblog();
 
   useRedirect('loggedOut');
 
@@ -32,7 +35,11 @@ const PostEditForm = ({
         setPostText(data.html);
         setEditMode(false);
       } else {
-        const { data } = await axiosReq.post('/posts/', { text });
+        const { data } = await axiosReq.post('/posts/', {
+          text,
+          reblogged: reblog.id,
+        });
+        setReblog(null);
         navigate(`/posts/${data.id}`);
       }
     } catch (err) {

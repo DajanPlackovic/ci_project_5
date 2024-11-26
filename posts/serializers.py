@@ -10,6 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
     profile_img = serializers.ReadOnlyField(source='author.profile.image.url')
     handle = serializers.ReadOnlyField(source='author.profile.handle')
     reblogs = serializers.SerializerMethodField()
+    # reblogged = serializers.ReadOnlyField(source='reblogged.id')
     # text = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
@@ -38,4 +39,5 @@ class PostSerializer(serializers.ModelSerializer):
                   'updated_at', 'text', 'html',
                   'comment_count', 'handle',
                   'profile_img', 'profile_slug',
-                  'is_owner', 'deleted', 'reblogs']
+                  'is_owner', 'deleted', 'reblogs',
+                  'reblogged']

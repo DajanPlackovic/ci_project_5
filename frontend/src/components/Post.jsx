@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/esm/Button';
 
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosRes } from '../api/axiosDefaults';
+import { useSetReblog } from '../contexts/ReblogContext';
 import PostEditForm from './PostEditForm';
 import Avatar from './Avatar';
 
@@ -17,6 +18,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const raiseError = useRaiseError();
   const location = useLocation();
   const navigate = useNavigate();
+  const setReblog = useSetReblog();
 
   const [postText, setPostText] = useState(post ? post.html : '');
   const [editMode, setEditMode] = useState(editModeInput);
@@ -37,6 +39,14 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
     } catch (err) {
       raiseError(err);
     }
+  };
+
+  const reblogPost = () => {
+    setReblog({
+      id: post.id,
+      reblogs: [...post.reblogs, post],
+    });
+    navigate('/editor-page');
   };
 
   return (
@@ -85,6 +95,11 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
                 </Button>
               </>
             )}
+            <Button
+              className='ms-2 d-flex align-items-center p-1'
+              onClick={reblogPost}>
+              <span className='material-symbols-outlined'>forward</span>
+            </Button>
           </Card.Footer>
         </>
       )}
