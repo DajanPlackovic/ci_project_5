@@ -14,16 +14,6 @@ const Avatar = ({ profile_img, author, handle, img_only = false }) => {
         </div>
       )}
     </div>
-    // <div>
-    //   <div className='col-6 d-flex justify-content-between'>
-    //     <div className='col-2'>
-    //       <Image src={profile_img} roundedCircle fluid />
-    //     </div>
-    //     <div className='col-8 mx-3'>
-    //       <span>{author}</span> <small>@{handle}</small>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
