@@ -40,6 +40,19 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
 
   return (
     <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 ${styles.Post}`}>
+      <Card.Header className='d-flex justify-content-between position-relative'>
+        <Avatar {...post} />
+        <span className='d-inline-block position-absolute bottom-0 end-0 p-2'>
+          {post?.created_at}
+        </span>
+        {list && (
+          <Link
+            to={`/posts/${post.id}/`}
+            className='p-1 d-flex align-items-center btn position-absolute top-0 end-0'>
+            <span className='material-symbols-outlined'>open_in_new</span>
+          </Link>
+        )}
+      </Card.Header>
       {editMode ? (
         <PostEditForm
           id={post.id}
@@ -49,20 +62,11 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
         />
       ) : (
         <>
-          <Card.Header className='d-flex justify-content-between position-relative'>
-            <Avatar {...post} />
-            <span className='d-inline-block position-absolute bottom-0 end-0 p-2'>
-              {post?.created_at}
-            </span>
-            {list && (
-              <Link
-                to={`/posts/${post.id}/`}
-                className='p-1 d-flex align-items-center btn position-absolute top-0 end-0'>
-                <span className='material-symbols-outlined'>open_in_new</span>
-              </Link>
-            )}
-          </Card.Header>
           <Card.Body>
+            {post &&
+              post.reblogs?.map((reblog) => (
+                <Post post={reblog} key={reblog.id + post.id} />
+              ))}
             <article className='card-text'>{parse(postText)}</article>
           </Card.Body>
           <Card.Footer className='d-flex justify-content-end'>

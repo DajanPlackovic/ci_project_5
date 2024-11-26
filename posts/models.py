@@ -11,6 +11,9 @@ class Post(models.Model):
     text = QuillField()
     html = models.TextField(blank=True)
     deleted = models.BooleanField(default=False)
+    reblogged = models.ForeignKey(
+        'self', blank=True, null=True, on_delete=models.DO_NOTHING
+    )
 
     class Meta:
         ordering = ['-created_at']
