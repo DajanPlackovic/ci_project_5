@@ -73,13 +73,20 @@ function MainNavBar() {
                 id='nav-dropdown'
                 className='d-flex align-items-center flex-column'>
                 <NavDropdown.Item eventKey='4.1'>
-                  <button onClick={logOut} className='nav-link'>
+                  <button
+                    onClick={logOut}
+                    className='nav-link d-flex align-items-center justify-content-between w-100'>
                     <span className='material-symbols-outlined'>logout</span>
+                    Log Out
                   </button>
                 </NavDropdown.Item>
                 <NavDropdown.Item eventKey='4.2'>
-                  <Nav.Link as={Link} to='/editor-page' className='nav-link'>
+                  <Nav.Link
+                    as={Link}
+                    to='/editor-page'
+                    className='nav-link d-flex align-items-center justify-content-between'>
                     <span className='material-symbols-outlined'>add</span>
+                    New Post
                   </Nav.Link>
                 </NavDropdown.Item>
               </NavDropdown>
