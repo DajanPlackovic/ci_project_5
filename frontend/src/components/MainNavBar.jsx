@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
+import Avatar from './Avatar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/esm/Button';
 
 function MainNavBar() {
   const theme = useTheme();
@@ -65,13 +68,22 @@ function MainNavBar() {
               </span>
             </button>
             {currentUser ? (
-              <button onClick={logOut} className='nav-link'>
-                <span className='material-symbols-outlined'>logout</span>
-              </button>
+              <NavDropdown
+                title={<Avatar img_only profile_img={userImage} />}
+                id='nav-dropdown'
+                className='d-flex align-items-center flex-column'>
+                <NavDropdown.Item eventKey='4.1'>
+                  <button onClick={logOut} className='nav-link'>
+                    <span className='material-symbols-outlined'>logout</span>
+                  </button>
+                </NavDropdown.Item>
+                <NavDropdown.Item eventKey='4.2'>
+                  <Nav.Link as={Link} to='/editor-page' className='nav-link'>
+                    <span className='material-symbols-outlined'>add</span>
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
             ) : (
-              // <Link className='nav-link'>
-              //   <Image src={userImage} roundedCircle height='40' />
-              // </Link>
               <Nav.Link as={Link} to='/signin' className='text-center'>
                 <span className='material-symbols-outlined'>
                   account_circle
