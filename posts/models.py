@@ -10,6 +10,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     text = QuillField()
     html = models.TextField(blank=True)
+    deleted = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -19,4 +20,10 @@ class Post(models.Model):
 
     def save(self, **kwargs):
         self.html = self.text.html
+        super().save(**kwargs)
+
+    def delete(self, **kwargs):
+        self.html = "<p>DELETED<p>"
+        self.text = ""
+        self.deleted = True
         super().save(**kwargs)

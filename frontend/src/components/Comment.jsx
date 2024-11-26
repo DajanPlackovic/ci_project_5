@@ -6,8 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
-import Editor from './Editor';
-import { getQuillDelta } from '../utils/utils';
 import CommentEditForm from './CommentEditForm';
 
 const Comment = ({

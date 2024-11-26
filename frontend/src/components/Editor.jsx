@@ -103,6 +103,7 @@ const Editor = ({ post = false, quillRef, defaultValue = null }) => {
         quillRef.current.theme.tooltip.show();
         return false;
       }}>
+      {/* taken from here: https://github.com/slab/quill/issues/1120#issuecomment-808467758 */}
       <BaseEditor ref={quillRef} post={post} defaultValue={defaultValue} />
     </div>
   );
