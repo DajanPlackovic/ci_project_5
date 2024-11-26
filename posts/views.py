@@ -1,5 +1,6 @@
 from django.db.models import Count
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post
 from .serializers import PostSerializer
 from project_5.permissions import IsOwnerOrReadOnly
@@ -9,6 +10,14 @@ class PostList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Post.objects.order_by('-created_at')
     serializer_class = PostSerializer
+    filter_backends = [
+        filters.SearchFilter,
+        DjangoFilterBackend
+    ]
+    search_fields = [
+        'author__username',
+        'html',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
