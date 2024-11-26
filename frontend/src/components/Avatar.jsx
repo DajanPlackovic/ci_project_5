@@ -1,5 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/esm/Col';
 import Image from 'react-bootstrap/esm/Image';
 
 import styles from '../styles/Avatar.module.css';

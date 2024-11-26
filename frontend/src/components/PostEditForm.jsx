@@ -1,6 +1,5 @@
 import React, { createRef } from 'react';
 import Editor from './Editor';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { getQuillDelta } from '../utils/utils';

@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import parse from 'html-react-parser';
 import styles from '../styles/Post.module.css';

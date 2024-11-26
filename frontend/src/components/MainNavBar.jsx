@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Image from 'react-bootstrap/Image';
 import { useTheme, useToggleTheme } from '../contexts/ThemeContext';
 import {
   useCurrentUser,
@@ -13,7 +12,6 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/esm/Button';
 
 function MainNavBar() {
   const theme = useTheme();
