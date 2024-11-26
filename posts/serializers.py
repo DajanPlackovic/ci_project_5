@@ -30,7 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
                 "handle": curr.reblogged.author.profile.handle
             })
             curr = curr.reblogged
-        return lst
+        return list(reversed(lst))
 
     class Meta:
         model = Post
