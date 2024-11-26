@@ -9,6 +9,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useRedirect } from '../hooks/useRedirect';
 import Editor from './Editor';
 import Card from 'react-bootstrap/Card';
+import Reblog from './Reblog';
 
 const PostEditForm = ({
   id = null,
@@ -42,12 +43,17 @@ const PostEditForm = ({
   const navigate = useNavigate();
 
   const cancelPost = () => {
+    setReblog(null);
     navigate(-1);
   };
 
   return (
     <>
       <Card.Body>
+        {reblog &&
+          reblog.reblogs.map((reblog, idx) => (
+            <Reblog key={idx} post={reblog} />
+          ))}
         <Editor post quillRef={quillRef} defaultValue={defaultValue} />
       </Card.Body>
       <Card.Footer className='d-flex justify-content-end'>

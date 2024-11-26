@@ -11,6 +11,7 @@ import PostEditForm from './PostEditForm';
 import Avatar from './Avatar';
 
 import styles from '../styles/Post.module.css';
+import Reblog from './Reblog';
 
 const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const raiseError = useRaiseError();
@@ -65,7 +66,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
           <Card.Body>
             {post &&
               post.reblogs?.map((reblog) => (
-                <Post post={reblog} key={reblog.id + post.id} />
+                <Reblog key={reblog.id} post={reblog} />
               ))}
             <article className='card-text'>{parse(postText)}</article>
           </Card.Body>
