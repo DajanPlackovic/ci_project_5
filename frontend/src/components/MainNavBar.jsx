@@ -92,9 +92,7 @@ function MainNavBar() {
               </NavDropdown>
             ) : (
               <Nav.Link as={Link} to='/signin' className='text-center'>
-                <span className='material-symbols-outlined'>
-                  account_circle
-                </span>
+                <span className='material-symbols-outlined'>login</span>
               </Nav.Link>
             )}
           </Nav>
