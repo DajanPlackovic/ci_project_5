@@ -17,6 +17,7 @@ const PostEditForm = ({
   defaultValue = null,
   setPostText = null,
   setEditMode = null,
+  list = false,
 }) => {
   const raiseError = useRaiseError();
   const reblog = useReblog();
@@ -51,7 +52,7 @@ const PostEditForm = ({
 
   const cancelPost = () => {
     setReblog(null);
-    navigate(-1);
+    list ? setEditMode(false) : navigate(-1);
   };
 
   return (

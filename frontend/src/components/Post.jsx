@@ -72,6 +72,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
           defaultValue={postText}
           setPostText={setPostText}
           setEditMode={setEditMode}
+          list={list}
         />
       ) : (
         <>
