@@ -82,7 +82,7 @@ function MainNavBar() {
                 <Nav.Link
                   as={Link}
                   to='/editor-page'
-                  className='nav-link d-flex align-items-center justify-content-between'
+                  className='nav-link d-flex align-items-center justify-content-center'
                 />
               </NavElement>
             )}
@@ -105,7 +105,9 @@ function MainNavBar() {
                   title={
                     <div className='d-flex align-items-center justify-content-center'>
                       <Avatar img_only profile_img={userImage} />
-                      <span className='d-lg-none'>Profile Options</span>
+                      <span className='d-lg-none m-2 d-inline-block'>
+                        Profile Options
+                      </span>
                     </div>
                   }
                   id='nav-dropdown'
@@ -127,7 +129,7 @@ function MainNavBar() {
                 <Nav.Link
                   as={Link}
                   to='/signin'
-                  className='nav-link d-flex align-items-center justify-content-between'
+                  className='nav-link d-flex align-items-center justify-content-center'
                 />
               </NavElement>
             )}
