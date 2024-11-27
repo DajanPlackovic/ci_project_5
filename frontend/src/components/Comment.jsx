@@ -9,9 +9,11 @@ import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
 import CommentEditForm from './CommentEditForm';
+import CommentForm from './CommentForm';
 
 const Comment = ({
   id,
+  post,
   author,
   is_owner,
   profile_img,
@@ -20,12 +22,15 @@ const Comment = ({
   html,
   deleted,
   responses,
+  setPost,
 }) => {
   const currentUser = useCurrentUser();
   const raiseError = useRaiseError();
   const [displayButtons, setDisplayButtons] = useState(is_owner);
   const [commentText, setCommentText] = useState(html);
   const [editMode, setEditMode] = useState(false);
+  const [responding, setResponding] = useState(false);
+  const [responsesState, setResponsesState] = useState({ results: responses });
 
   const editComment = async () => {
     setEditMode(true);
@@ -39,6 +44,10 @@ const Comment = ({
     } catch (err) {
       raiseError(err);
     }
+  };
+
+  const respond = () => {
+    setResponding(true);
   };
 
   return (
@@ -58,24 +67,43 @@ const Comment = ({
         <>
           <Card.Body className='pe-0'>
             <article className='card-text'>{parse(commentText)}</article>
-            {responses.length > 0 &&
-              responses.map((response) => (
+            {responsesState.results.length > 0 &&
+              responsesState.results.map((response) => (
                 <Comment key={response.id} {...response} />
               ))}
           </Card.Body>
           {currentUser && (
             <Card.Footer className='d-flex justify-content-end'>
-              {displayButtons && !deleted && (
+              {responding ? (
+                <CommentForm
+                  post={post}
+                  setComments={setResponsesState}
+                  setPost={setPost}
+                  response_to={id}
+                  setResponding={setResponding}
+                />
+              ) : (
                 <>
+                  {displayButtons && !deleted && (
+                    <>
+                      <Button
+                        className='d-flex align-items-center p-1'
+                        onClick={editComment}>
+                        <span className='material-symbols-outlined'>edit</span>
+                      </Button>
+                      <Button
+                        className='btn-danger ms-2 d-flex align-items-center p-1'
+                        onClick={deleteComment}>
+                        <span className='material-symbols-outlined'>
+                          delete
+                        </span>
+                      </Button>
+                    </>
+                  )}
                   <Button
-                    className='d-flex align-items-center p-1'
-                    onClick={editComment}>
-                    <span className='material-symbols-outlined'>edit</span>
-                  </Button>
-                  <Button
-                    className='btn-danger ms-2 d-flex align-items-center p-1'
-                    onClick={deleteComment}>
-                    <span className='material-symbols-outlined'>delete</span>
+                    className='d-flex align-items-center p-1 ms-2'
+                    onClick={respond}>
+                    <span className='material-symbols-outlined'>reply</span>
                   </Button>
                 </>
               )}

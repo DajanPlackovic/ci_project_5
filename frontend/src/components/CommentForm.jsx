@@ -10,7 +10,13 @@ import Editor from './Editor';
 
 import styles from '../styles/CommentForm.module.css';
 
-const CommentForm = ({ post, setComments, setPost }) => {
+const CommentForm = ({
+  post,
+  setComments,
+  setPost,
+  response_to = null,
+  setResponding = null,
+}) => {
   const quillRef = createRef();
 
   const raiseError = useRaiseError();
@@ -20,7 +26,8 @@ const CommentForm = ({ post, setComments, setPost }) => {
       const text = getQuillDelta(quillRef);
       const { data } = await axiosReq.post('/comments/', {
         text,
-        post: post.id,
+        post,
+        response_to,
       });
       setComments((prevState) => ({
         ...prevState,
@@ -30,8 +37,17 @@ const CommentForm = ({ post, setComments, setPost }) => {
         ...prevState,
         comment_count: prevState.comment_count + 1,
       }));
+      if (setResponding) {
+        setResponding(false);
+      }
     } catch (err) {
       raiseError(err);
+    }
+  };
+
+  const cancel = () => {
+    if (setResponding) {
+      setResponding(false);
     }
   };
 
@@ -47,6 +63,13 @@ const CommentForm = ({ post, setComments, setPost }) => {
           className='d-flex align-items-center p-1'>
           <span className='material-symbols-outlined'>send</span>
         </Button>
+        {setResponding && (
+          <Button
+            onClick={cancel}
+            className='d-flex align-items-center p-1 btn-secondary ms-2'>
+            <span className='material-symbols-outlined'>cancel</span>
+          </Button>
+        )}
       </Card.Footer>
     </Card>
   );

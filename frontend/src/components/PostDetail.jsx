@@ -52,7 +52,7 @@ const PostDetail = () => {
         </div>
         {currentUser ? (
           <CommentForm
-            post={post}
+            post={post.id}
             setComments={setComments}
             setPost={setPost}
           />
@@ -79,7 +79,7 @@ const PostDetail = () => {
               fetchMoreData(comments, setComments);
             }}>
             {comments.results.map((comment) => (
-              <Comment key={comment.id} {...comment} />
+              <Comment key={comment.id} {...comment} setPost={setPost} />
             ))}
           </InfiniteScroll>
         )}
