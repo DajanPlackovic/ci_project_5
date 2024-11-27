@@ -7,8 +7,15 @@ import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
+import Comment from './Comment';
 
-const CommentEditForm = ({ id, commentText, setCommentText, setEditMode }) => {
+const CommentEditForm = ({
+  id,
+  commentText,
+  setCommentText,
+  setEditMode,
+  responsesState,
+}) => {
   const quillRef = useRef();
 
   const raiseError = useRaiseError();
@@ -26,14 +33,18 @@ const CommentEditForm = ({ id, commentText, setCommentText, setEditMode }) => {
 
   return (
     <>
-      <Card.Body>
-        <Editor quillRef={quillRef} defaultValue={commentText} />
-      </Card.Body>
-      <Card.Footer className='d-flex justify-content-end'>
+      <Card.Header className='d-flex justify-content-end'>
         <Button className='d-flex align-items-center p-1' onClick={submitEdit}>
           <span className='material-symbols-outlined'>send</span>
         </Button>
-      </Card.Footer>
+      </Card.Header>
+      <Card.Body>
+        <Editor quillRef={quillRef} defaultValue={commentText} />
+        {responsesState.results.length > 0 &&
+          responsesState.results.map((response) => (
+            <Comment key={response.id} {...response} />
+          ))}
+      </Card.Body>
     </>
   );
 };
