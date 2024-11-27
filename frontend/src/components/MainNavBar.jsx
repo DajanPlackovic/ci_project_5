@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
+import Tooltip from 'react-bootstrap/esm/Tooltip';
 
 import { useTheme, useToggleTheme } from '../contexts/ThemeContext';
 import {
@@ -15,6 +17,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import NavElement from './NavElement';
 
 function MainNavBar() {
   const theme = useTheme();
@@ -74,40 +77,59 @@ function MainNavBar() {
         />
         <Navbar.Collapse id='main-navbar-nav'>
           <Nav className='ms-auto'>
-            <button onClick={toggleTheme} className='nav-link'>
-              <span className='material-symbols-outlined'>
-                {theme === 'light' ? 'dark_mode' : 'light_mode'}
-              </span>
-            </button>
+            {currentUser && (
+              <NavElement symbol={'add'} hint={'New Post'}>
+                <Nav.Link
+                  as={Link}
+                  to='/editor-page'
+                  className='nav-link d-flex align-items-center justify-content-between'
+                />
+              </NavElement>
+            )}
+            <NavElement
+              symbol={theme === 'light' ? 'dark_mode' : 'light_mode'}
+              hint={`${theme === 'light' ? 'Dark' : 'Light'} Mode`}>
+              <button
+                onClick={toggleTheme}
+                className='nav-link d-flex align-items-center justify-content-center w-100'
+                aria-label='Toggle dark mode'
+                aria-current={theme}
+              />
+            </NavElement>
             {currentUser ? (
-              <NavDropdown
-                title={<Avatar img_only profile_img={userImage} />}
-                id='nav-dropdown'
-                className='d-flex align-items-center flex-column'
-                ref={dropdownRef}
-                align='end'>
-                <NavDropdown.Item eventKey='4.1'>
-                  <button
-                    onClick={logOut}
-                    className='nav-link d-flex align-items-center justify-content-between w-100'>
-                    <span className='material-symbols-outlined'>logout</span>
-                    Log Out
-                  </button>
-                </NavDropdown.Item>
-                <NavDropdown.Item eventKey='4.2' as={Container}>
-                  <Nav.Link
-                    as={Link}
-                    to='/editor-page'
-                    className='nav-link d-flex align-items-center justify-content-between'>
-                    <span className='material-symbols-outlined'>add</span>
-                    New Post
-                  </Nav.Link>
-                </NavDropdown.Item>
-              </NavDropdown>
+              <OverlayTrigger
+                placement='bottom'
+                overlay={<Tooltip>Profile</Tooltip>}
+                trigger={'hover'}>
+                <NavDropdown
+                  title={
+                    <div className='d-flex align-items-center justify-content-center'>
+                      <Avatar img_only profile_img={userImage} />
+                      <span className='d-lg-none'>Profile Options</span>
+                    </div>
+                  }
+                  id='nav-dropdown'
+                  className='d-flex align-items-center flex-column'
+                  ref={dropdownRef}
+                  align='end'>
+                  <NavDropdown.Item eventKey='4.1'>
+                    <button
+                      onClick={logOut}
+                      className='nav-link d-flex align-items-center justify-content-between w-100'>
+                      <span className='material-symbols-outlined'>logout</span>
+                      Log Out
+                    </button>
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </OverlayTrigger>
             ) : (
-              <Nav.Link as={Link} to='/signin' className='text-center'>
-                <span className='material-symbols-outlined'>login</span>
-              </Nav.Link>
+              <NavElement symbol={'login'} hint={'Sign in'}>
+                <Nav.Link
+                  as={Link}
+                  to='/signin'
+                  className='nav-link d-flex align-items-center justify-content-between'
+                />
+              </NavElement>
             )}
           </Nav>
         </Navbar.Collapse>
