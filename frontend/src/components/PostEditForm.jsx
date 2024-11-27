@@ -38,7 +38,7 @@ const PostEditForm = ({
       } else {
         const { data } = await axiosReq.post('/posts/', {
           text,
-          reblogged: reblog.id,
+          reblogged: reblog?.id,
         });
         setReblog(null);
         navigate(`/posts/${data.id}`);
