@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
+import ButtonGroup from 'react-bootstrap/esm/ButtonGroup';
 
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosRes } from '../api/axiosDefaults';
@@ -89,25 +90,27 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
           </Card.Body>
           {currentUser && (
             <Card.Footer className='d-flex justify-content-end'>
-              {post.is_owner && !post.deleted && (
-                <>
-                  <Button
-                    className='d-flex align-items-center p-1'
-                    onClick={editPost}>
-                    <span className='material-symbols-outlined'>edit</span>
-                  </Button>
-                  <Button
-                    className='btn-danger ms-2 d-flex align-items-center p-1'
-                    onClick={deletePost}>
-                    <span className='material-symbols-outlined'>delete</span>
-                  </Button>
-                </>
-              )}
-              <Button
-                className='ms-2 d-flex align-items-center p-1'
-                onClick={reblogPost}>
-                <span className='material-symbols-outlined'>forward</span>
-              </Button>
+              <ButtonGroup>
+                {post.is_owner && !post.deleted && (
+                  <>
+                    <Button
+                      className='d-flex align-items-center p-1'
+                      onClick={editPost}>
+                      <span className='material-symbols-outlined'>edit</span>
+                    </Button>
+                    <Button
+                      className='btn-danger d-flex align-items-center p-1'
+                      onClick={deletePost}>
+                      <span className='material-symbols-outlined'>delete</span>
+                    </Button>
+                  </>
+                )}
+                <Button
+                  className='d-flex align-items-center p-1'
+                  onClick={reblogPost}>
+                  <span className='material-symbols-outlined'>forward</span>
+                </Button>
+              </ButtonGroup>
             </Card.Footer>
           )}
         </>
