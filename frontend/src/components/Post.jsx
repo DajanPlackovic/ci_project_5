@@ -26,6 +26,10 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const [editMode, setEditMode] = useState(editModeInput);
 
   const editPost = () => {
+    setReblog({
+      id: post.id,
+      reblogs: [...post.reblogs],
+    });
     setEditMode(true);
   };
 
