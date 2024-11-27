@@ -14,6 +14,7 @@ import {
 import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 function MainNavBar() {
   const theme = useTheme();
@@ -25,6 +26,9 @@ function MainNavBar() {
   const raiseError = useRaiseError();
 
   const [userImage, setUserImage] = useState(null);
+
+  const { expanded, setExpanded, toggleRef, dropdownRef } =
+    useClickOutsideToggle();
 
   useEffect(() => {
     const getUserImage = async () => {
@@ -54,12 +58,20 @@ function MainNavBar() {
   };
 
   return (
-    <Navbar expand='lg' className='bg-body-tertiary sticky-top'>
+    <Navbar
+      expand='lg'
+      className='bg-body-tertiary sticky-top'
+      expanded={expanded}>
       <Container>
         <Navbar.Brand as={Link} to='/'>
           Project 5
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='main-navbar-nav' />
+        <Navbar.Toggle
+          ref={toggleRef}
+          aria-expanded={expanded}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls='main-navbar-nav'
+        />
         <Navbar.Collapse id='main-navbar-nav'>
           <Nav className='ms-auto'>
             <button onClick={toggleTheme} className='nav-link'>
@@ -72,6 +84,7 @@ function MainNavBar() {
                 title={<Avatar img_only profile_img={userImage} />}
                 id='nav-dropdown'
                 className='d-flex align-items-center flex-column'
+                ref={dropdownRef}
                 align='end'>
                 <NavDropdown.Item eventKey='4.1'>
                   <button
@@ -81,7 +94,7 @@ function MainNavBar() {
                     Log Out
                   </button>
                 </NavDropdown.Item>
-                <NavDropdown.Item eventKey='4.2'>
+                <NavDropdown.Item eventKey='4.2' as={Container}>
                   <Nav.Link
                     as={Link}
                     to='/editor-page'
