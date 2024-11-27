@@ -8,8 +8,6 @@ import { axiosReq } from '../api/axiosDefaults';
 import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
 
-import styles from '../styles/CommentForm.module.css';
-
 const CommentForm = ({
   post,
   setComments,
@@ -52,8 +50,7 @@ const CommentForm = ({
   };
 
   return (
-    <Card
-      className={`col-12 col-md-8 col-lg-6 m-auto mt-3 w-100 ${styles.CardBody}`}>
+    <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 w-100`}>
       <Card.Body>
         <Editor quillRef={quillRef} />
       </Card.Body>

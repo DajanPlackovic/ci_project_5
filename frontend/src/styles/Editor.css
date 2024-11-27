@@ -10,4 +10,5 @@
   color: inherit;
   font-family: inherit;
   font-size: inherit;
+  z-index: 1010 !important;
 }
