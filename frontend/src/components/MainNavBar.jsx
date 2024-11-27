@@ -71,7 +71,8 @@ function MainNavBar() {
               <NavDropdown
                 title={<Avatar img_only profile_img={userImage} />}
                 id='nav-dropdown'
-                className='d-flex align-items-center flex-column'>
+                className='d-flex align-items-center flex-column'
+                align='end'>
                 <NavDropdown.Item eventKey='4.1'>
                   <button
                     onClick={logOut}
