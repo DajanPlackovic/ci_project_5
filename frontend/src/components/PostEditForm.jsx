@@ -66,14 +66,14 @@ const PostEditForm = ({
       </Card.Body>
       <Card.Footer className='d-flex justify-content-end'>
         <Button
-          onClick={handleSubmit}
-          className='d-flex align-items-center p-1'>
-          <span className='material-symbols-outlined'>send</span>
-        </Button>
-        <Button
           onClick={cancelPost}
           className='d-flex align-items-center p-1 btn-secondary ms-2'>
           <span className='material-symbols-outlined'>cancel</span>
+        </Button>
+        <Button
+          onClick={handleSubmit}
+          className='d-flex align-items-center p-1 ms-2'>
+          <span className='material-symbols-outlined'>send</span>
         </Button>
       </Card.Footer>
     </>
