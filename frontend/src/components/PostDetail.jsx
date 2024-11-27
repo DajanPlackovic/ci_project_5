@@ -27,7 +27,7 @@ const PostDetail = () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
           axiosRes.get(`/posts/${id}`),
-          axiosRes.get(`/comments/?post=${id}`),
+          axiosRes.get(`/comments/?post=${id}&response_to__isnull=True`),
         ]);
         setPost(post);
         setComments(comments);

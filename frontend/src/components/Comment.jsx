@@ -19,6 +19,7 @@ const Comment = ({
   created_at,
   html,
   deleted,
+  responses,
 }) => {
   const currentUser = useCurrentUser();
   const raiseError = useRaiseError();
@@ -55,8 +56,12 @@ const Comment = ({
         />
       ) : (
         <>
-          <Card.Body>
+          <Card.Body className='pe-0'>
             <article className='card-text'>{parse(commentText)}</article>
+            {responses.length > 0 &&
+              responses.map((response) => (
+                <Comment key={response.id} {...response} />
+              ))}
           </Card.Body>
           {currentUser && (
             <Card.Footer className='d-flex justify-content-end'>

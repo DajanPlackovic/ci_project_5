@@ -10,7 +10,10 @@ class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.order_by('-created_at')
     serializer_class = CommentSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['post']
+    filterset_fields = {
+        "post": ["exact"],
+        "response_to": ["isnull"],
+    }
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
