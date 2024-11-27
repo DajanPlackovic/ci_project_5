@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useSetReblog } from '../contexts/ReblogContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 import PostEditForm from './PostEditForm';
 import Avatar from './Avatar';
 
@@ -19,6 +20,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const setReblog = useSetReblog();
+  const currentUser = useCurrentUser();
 
   const [postText, setPostText] = useState(post ? post.html : '');
   const [editMode, setEditMode] = useState(editModeInput);
@@ -80,27 +82,29 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
               ))}
             <article className='card-text'>{parse(postText)}</article>
           </Card.Body>
-          <Card.Footer className='d-flex justify-content-end'>
-            {post.is_owner && !post.deleted && (
-              <>
-                <Button
-                  className='d-flex align-items-center p-1'
-                  onClick={editPost}>
-                  <span className='material-symbols-outlined'>edit</span>
-                </Button>
-                <Button
-                  className='btn-danger ms-2 d-flex align-items-center p-1'
-                  onClick={deletePost}>
-                  <span className='material-symbols-outlined'>delete</span>
-                </Button>
-              </>
-            )}
-            <Button
-              className='ms-2 d-flex align-items-center p-1'
-              onClick={reblogPost}>
-              <span className='material-symbols-outlined'>forward</span>
-            </Button>
-          </Card.Footer>
+          {currentUser && (
+            <Card.Footer className='d-flex justify-content-end'>
+              {post.is_owner && !post.deleted && (
+                <>
+                  <Button
+                    className='d-flex align-items-center p-1'
+                    onClick={editPost}>
+                    <span className='material-symbols-outlined'>edit</span>
+                  </Button>
+                  <Button
+                    className='btn-danger ms-2 d-flex align-items-center p-1'
+                    onClick={deletePost}>
+                    <span className='material-symbols-outlined'>delete</span>
+                  </Button>
+                </>
+              )}
+              <Button
+                className='ms-2 d-flex align-items-center p-1'
+                onClick={reblogPost}>
+                <span className='material-symbols-outlined'>forward</span>
+              </Button>
+            </Card.Footer>
+          )}
         </>
       )}
     </Card>
