@@ -11,9 +11,9 @@ import { useSetReblog } from '../contexts/ReblogContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import PostEditForm from './PostEditForm';
 import Avatar from './Avatar';
+import Reblog from './Reblog';
 
 import styles from '../styles/Post.module.css';
-import Reblog from './Reblog';
 
 const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const raiseError = useRaiseError();
