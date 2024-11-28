@@ -52,7 +52,7 @@ const PostsList = ({ filters = '' }) => {
       />
       <Container className='p-2 pt-4'>
         {loading ? (
-          <Spinner role='status' className='m-auto' />
+          <Spinner role='status' className='d-block m-auto' />
         ) : posts.results?.length ? (
           <InfiniteScroll
             dataLength={posts.results?.length}
