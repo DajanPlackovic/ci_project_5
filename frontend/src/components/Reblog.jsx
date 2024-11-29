@@ -45,8 +45,6 @@ Reblog.propTypes = {
         id: PropTypes.number.isRequired,
       })
     ),
-    is_owner: PropTypes.bool.isRequired,
-    deleted: PropTypes.bool.isRequired,
     created_at: PropTypes.string.isRequired,
     html: PropTypes.string.isRequired,
   }),
