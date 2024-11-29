@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 export const GlobalErrorContext = createContext();
 export const SetGlobalErrorContext = createContext();
@@ -24,12 +25,16 @@ export const useRaiseError = () => useContext(RaiseErrorContext);
  */
 export const GlobalErrorProvider = ({ children }) => {
   const [globalErrors, setGlobalErrors] = useState([]);
+  const navigate = useNavigate();
 
-  const raiseError = (error) =>
-    setGlobalErrors((prevState) => [
-      ...prevState,
-      error.response?.data?.error || error.message,
-    ]);
+  const raiseError = (error) => {
+    if (error.status === 404) navigate('/404');
+    else
+      setGlobalErrors((prevState) => [
+        ...prevState,
+        error.response?.data?.error || error.message,
+      ]);
+  };
 
   return (
     <GlobalErrorContext.Provider value={globalErrors}>
