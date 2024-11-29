@@ -10,6 +10,8 @@ import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/NotificationContext';
 import Post from './Post';
 
+import styles from '../styles/PostsList.module.css';
+
 /**
  * A component that displays a list of posts that match the given filters.
  * The list is searchable and paginates using an infinite scroll.
@@ -52,7 +54,7 @@ const PostsList = ({ filters = '' }) => {
   return (
     <>
       <input
-        className='form-control'
+        className={`form-control m-auto ${styles.SearchBar}`}
         type='search'
         placeholder='Search for a post'
         aria-label='Search'
