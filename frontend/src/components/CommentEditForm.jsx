@@ -9,6 +9,18 @@ import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
 import Comment from './Comment';
 
+/**
+ * CommentEditForm component. Displays a comment in an editable form.
+ *
+ * @param {Object} props - Component props.
+ * @param {number} props.id - The comment's ID.
+ * @param {string} props.commentText - The comment's text in HTML format.
+ * @param {Function} props.setCommentText - Function to update the comment's text
+ * in the parent component.
+ * @param {Function} props.setEditMode - Function to update the edit mode of the
+ * comment in the parent component.
+ * @param {Object} props.responsesState - The comment's responses.
+ */
 const CommentEditForm = ({
   id,
   commentText,

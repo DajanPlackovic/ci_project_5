@@ -8,7 +8,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
 
-const CommentForm = ({
+const CommentCreateForm = ({
   post,
   setComments,
   setPost,
@@ -72,4 +72,4 @@ const CommentForm = ({
   );
 };
 
-export default CommentForm;
+export default CommentCreateForm;

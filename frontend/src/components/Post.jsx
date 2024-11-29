@@ -10,12 +10,24 @@ import { useRaiseError } from '../contexts/GlobalErrorContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useSetReblog } from '../contexts/ReblogContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
-import PostEditForm from './PostEditForm';
+import PostForm from './PostForm';
 import Avatar from './Avatar';
 import Reblog from './Reblog';
 
 import styles from '../styles/Post.module.css';
 
+/**
+ * Post component renders a single post with options to edit, delete, or reblog.
+ * Displays the post's content, author information, and actions based on the
+ * current user's permissions. If the user is the owner of the post, they can
+ * edit or delete it. All users can reblog the post.
+ *
+ * @param {Object} props - Component props.
+ * @param {Object} props.post - The post object containing details of the post.
+ * @param {boolean} [props.editPost=false] - Indicates if the post is in edit mode.
+ * @param {boolean} [props.list=false] - Determines if the post is part of a list.
+ * @returns {JSX.Element} - The rendered Post component.
+ */
 const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const raiseError = useRaiseError();
   const location = useLocation();
@@ -72,7 +84,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
         )}
       </Card.Header>
       {editMode ? (
-        <PostEditForm
+        <PostForm
           id={post.id}
           defaultValue={postText}
           setPostText={setPostText}

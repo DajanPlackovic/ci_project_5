@@ -8,6 +8,12 @@ import {
   useSetGlobalErrors,
 } from '../contexts/GlobalErrorContext';
 
+/**
+ * ErrorContainer displays a list of global errors in a toast container.
+ * Global errors are cleared when the toast is closed.
+ *
+ * @returns {JSX.Element} A JSX element representing the error container.
+ */
 const ErrorContainer = () => {
   const globalErrors = useGlobalErrors();
   const setGlobalErrors = useSetGlobalErrors();

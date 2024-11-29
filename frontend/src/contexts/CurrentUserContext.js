@@ -11,6 +11,20 @@ export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+/**
+ * Provides the current user context to its children components.
+ *
+ * This provider fetches and maintains the current user's state from the backend
+ * using `axios` requests. It also sets up interceptors to automatically refresh
+ * authentication tokens when necessary and handle unauthorized errors by
+ * redirecting to the sign-in page.
+ *
+ * The context provides both the current user data and a function to update it.
+ *
+ * @param {object} props - The component properties.
+ * @param {ReactNode} props.children - The child components that have access to
+ * the current user context.
+ */
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();

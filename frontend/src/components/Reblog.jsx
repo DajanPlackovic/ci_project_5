@@ -8,6 +8,13 @@ import Avatar from './Avatar';
 
 import styles from '../styles/Post.module.css';
 
+/**
+ * A component that renders a post as a reblog.
+ *
+ * @param {Object} props - The props for the component.
+ * @param {Object} props.post - The post to render as a reblog.
+ * @returns {ReactElement} - The rendered component.
+ */
 const Reblog = ({ post }) => {
   return (
     <Card className={`m-auto mt-3 ${styles.Post}`}>

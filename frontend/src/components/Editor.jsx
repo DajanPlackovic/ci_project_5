@@ -96,6 +96,16 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
   return <div ref={containerRef}></div>;
 });
 
+/**
+ * A React component that wraps the Quill editor and allows for image
+ * uploading.
+ *
+ * @param {boolean} [post=false] - Whether or not to render the post toolbar
+ * @param {React.MutableRefObject<Quill>} quillRef - A React ref to the Quill
+ *   instance.
+ * @param {string} [defaultValue=null] - The default value of the editor.
+ * @returns {JSX.Element} - The Editor component.
+ */
 const Editor = ({ post = false, quillRef, defaultValue = null }) => {
   return (
     <div

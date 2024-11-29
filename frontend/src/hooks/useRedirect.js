@@ -2,6 +2,15 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
+/**
+ * Handles user redirection based on authentication status.
+ *
+ * This hook will either refresh the authentication token or redirect to the
+ * home page based on the value of `userAuthStatus`.
+ *
+ * @param {string} userAuthStatus - The user's current authentication status.
+ *   Either 'loggedIn' or 'loggedOut'.
+ */
 export const useRedirect = (userAuthStatus) => {
   const navigate = useNavigate();
 

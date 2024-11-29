@@ -9,6 +9,14 @@ import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Post from './Post';
 
+/**
+ * A component that displays a list of posts that match the given filters.
+ * The list is searchable and paginates using an infinite scroll.
+ *
+ * @param {Object} props - The props for the component.
+ * @param {string} [props.filters] - The filters to apply to the list of posts.
+ * @returns {ReactElement} - The component.
+ */
 const PostsList = ({ filters = '' }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);

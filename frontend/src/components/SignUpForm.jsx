@@ -10,6 +10,20 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useRedirect } from '../hooks/useRedirect';
 
+  /**
+   * Handles user sign-up form submission.
+   *
+   * If the form data is valid, makes two POST requests to the backend to sign up
+   * the user and log them in, and on success, sets the user in the
+   * CurrentUserContext, sets a timestamp for the token, and navigates back two
+   * pages.
+   *
+   * If the form data is invalid, sets errors in the component state.
+   *
+   * The form is rendered with a username and password input field, and a sign
+   * up button. If the user already has an account, it also renders a link to
+   * the sign in page.
+   */
 const SignUpForm = () => {
   useRedirect('loggedIn');
 

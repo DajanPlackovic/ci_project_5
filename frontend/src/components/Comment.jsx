@@ -10,8 +10,29 @@ import { axiosRes } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 import Avatar from './Avatar';
 import CommentEditForm from './CommentEditForm';
-import CommentForm from './CommentForm';
+import CommentCreateForm from './CommentCreateForm';
 
+/**
+ * Comment component. Displays a comment with the author's information and
+ * actions based on the current user's permissions. If the current user is the
+ * author of the comment, they can edit or delete the comment. If the current
+ * user is not the author, they can only reply to the comment.
+ *
+ * @param {Object} props - Component props.
+ * @param {number} props.id - The comment's ID.
+ * @param {Object} props.post - The post the comment belongs to.
+ * @param {Object} props.author - The comment's author.
+ * @param {boolean} props.is_owner - Whether the current user is the author.
+ * @param {string} props.profile_img - URL to the author's profile image.
+ * @param {string} props.handle - The author's handle.
+ * @param {string} props.created_at - The comment's creation date in ISO 8601
+ * format.
+ * @param {string} props.html - The comment's text in HTML format.
+ * @param {boolean} props.deleted - Whether the comment is deleted.
+ * @param {Array<Object>} props.responses - The comment's responses.
+ * @param {Function} props.setPost - Function to update the post the comment
+ * belongs to.
+ */
 const Comment = ({
   id,
   post,
@@ -97,7 +118,7 @@ const Comment = ({
           <Card.Body className='pe-0'>
             <article className='card-text'>{parse(commentText)}</article>
             {responding ? (
-              <CommentForm
+              <CommentCreateForm
                 post={post}
                 setComments={setResponsesState}
                 setPost={setPost}

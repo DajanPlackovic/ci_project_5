@@ -12,8 +12,13 @@ import { fetchMoreData } from '../utils/utils';
 import { axiosRes } from '../api/axiosDefaults';
 import Post from './Post';
 import Comment from './Comment';
-import CommentForm from './CommentForm';
+import CommentCreateForm from './CommentCreateForm';
 
+/**
+ * PostDetail component. Displays a post and its comments.
+ *
+ * @returns {ReactElement} - The component.
+ */
 const PostDetail = () => {
   const raiseError = useRaiseError();
   const currentUser = useCurrentUser();
@@ -51,7 +56,7 @@ const PostDetail = () => {
           </span>
         </div>
         {currentUser ? (
-          <CommentForm
+          <CommentCreateForm
             post={post.id}
             setComments={setComments}
             setPost={setPost}

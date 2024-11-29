@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card';
 import { useReblog, useSetReblog } from '../contexts/ReblogContext';
 import Reblog from './Reblog';
 
-const PostEditForm = ({
+const PostForm = ({
   id = null,
   defaultValue = null,
   setPostText = null,
@@ -80,4 +80,4 @@ const PostEditForm = ({
   );
 };
 
-export default PostEditForm;
+export default PostForm;

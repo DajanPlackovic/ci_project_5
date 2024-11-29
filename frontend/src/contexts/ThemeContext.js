@@ -8,6 +8,19 @@ export const useTheme = () => useContext(ThemeContext);
 export const useSetTheme = () => useContext(SetThemeContext);
 export const useToggleTheme = () => useContext(ToggleThemeContext);
 
+/**
+ * ThemeProvider component that manages the theme state and provides
+ * theme-related functions to its children via context.
+ *
+ * This component allows the theme to be toggled between 'light' and 'dark'
+ * modes, and persists the current theme in localStorage. It updates the
+ * HTML element's data attribute to reflect the current theme.
+ *
+ * @param {React.ReactNode} children - The child components that will have 
+ * access to the theme context.
+ * @returns {JSX.Element} A context provider that supplies the theme value,
+ * a function to set the theme, and a function to toggle the theme.
+ */
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
     localStorage.getItem('project5theme') || 'light'

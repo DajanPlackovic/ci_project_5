@@ -9,6 +9,19 @@ import { Link } from 'react-router-dom';
 import { useRedirect } from '../hooks/useRedirect';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
 
+  /**
+   * Handles user sign-in form submission.
+   *
+   * If the form data is valid, makes a POST request to the backend to log in
+   * the user, and on success, sets the user in the CurrentUserContext, sets a
+   * timestamp for the token, and navigates back one page.
+   *
+   * If the form data is invalid, raises an error in the GlobalErrorContext.
+   *
+   * The form is rendered with a username and password input field, and a sign
+   * in button. If the user doesn't have an account, it also renders a link to
+   * the sign up page.
+   */
 const SignInForm = () => {
   useRedirect('loggedIn');
 

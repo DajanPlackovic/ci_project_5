@@ -19,6 +19,16 @@ import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import NavElement from './NavElement';
 
+/**
+ * The main navigation bar component.
+ *
+ * The main navigation bar is a sticky bar located at the top of the page. It
+ * contains a link to the home page, a button to toggle dark mode, and a
+ * dropdown menu for signed-in users. The dropdown menu contains a link to the
+ * user's profile page and a button to log out.
+ *
+ * @returns The main navigation bar component.
+ */
 function MainNavBar() {
   const theme = useTheme();
   const toggleTheme = useToggleTheme();
