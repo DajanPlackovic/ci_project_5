@@ -3,7 +3,7 @@ import { Quill } from 'react-quill';
 import PropTypes from 'prop-types';
 
 import { axiosReq } from '../api/axiosDefaults';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 
 import 'quill/dist/quill.bubble.css';
 import '../styles/Editor.css';
@@ -81,10 +81,13 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
         await uploadFiles(file, quill);
 
         // https://stackoverflow.com/questions/48678236/setting-the-cursor-position-after-setting-a-new-delta-in-quill
-        setTimeout(
-          () => quill.setSelection(quill.getSelection().index + 10, 0),
-          0
-        );
+        setTimeout(() => {
+          try {
+            quill.setSelection(quill.getSelection().index + 10, 0);
+          } catch (err) {
+            console.log(err);
+          }
+        }, 0);
       };
     }
 
