@@ -20,7 +20,7 @@ from django.views.generic import TemplateView
 from .views import logout_route
 
 urlpatterns = [
-    # path('', TemplateView.as_view(template_name='index.html')),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/dj-rest-auth/logout/', logout_route),
@@ -35,4 +35,4 @@ urlpatterns = [
     path('api/comments/', include('comments.urls')),
 ]
 
-# handler404 = TemplateView.as_view(template_name='index.html')
+handler404 = TemplateView.as_view(template_name='index.html')
