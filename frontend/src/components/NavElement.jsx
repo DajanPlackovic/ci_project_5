@@ -1,4 +1,5 @@
 import React, { Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 
 import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
 import Tooltip from 'react-bootstrap/esm/Tooltip';
@@ -21,6 +22,11 @@ const MobileContent = ({ symbol, hint }) => {
       <span className='d-lg-none d-inline-block m-2'>{hint}</span>
     </>
   );
+};
+
+MobileContent.propTypes = {
+  symbol: PropTypes.string.isRequired,
+  hint: PropTypes.string.isRequired,
 };
 
 /**
@@ -48,6 +54,12 @@ const NavElement = ({ symbol, hint, children }) => {
       {childrenWithMobileContent[0]}
     </OverlayTrigger>
   );
+};
+
+NavElement.propTypes = {
+  symbol: PropTypes.string.isRequired,
+  hint: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default NavElement;

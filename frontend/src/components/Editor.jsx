@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 import { Quill } from 'react-quill';
+import PropTypes from 'prop-types';
 
 import { axiosReq } from '../api/axiosDefaults';
 import { useRaiseError } from '../contexts/GlobalErrorContext';
@@ -96,6 +97,16 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
   return <div ref={containerRef}></div>;
 });
 
+BaseEditor.displayName = 'BaseEditor';
+
+BaseEditor.propTypes = {
+  post: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  quillRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Quill),
+  }),
+};
+
 /**
  * A React component that wraps the Quill editor and allows for image
  * uploading.
@@ -122,5 +133,13 @@ const Editor = ({ post = false, quillRef, defaultValue = null }) => {
 };
 
 Editor.displayName = 'Editor';
+
+Editor.propTypes = {
+  post: PropTypes.bool,
+  quillRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Quill),
+  }).isRequired,
+  defaultValue: PropTypes.string,
+};
 
 export default Editor;

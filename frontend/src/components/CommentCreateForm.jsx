@@ -1,4 +1,5 @@
 import React, { createRef } from 'react';
+import PropTypes from 'prop-types';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
@@ -70,6 +71,14 @@ const CommentCreateForm = ({
       </Card.Footer>
     </Card>
   );
+};
+
+CommentCreateForm.propTypes = {
+  post: PropTypes.object.isRequired,
+  setComments: PropTypes.func.isRequired,
+  setPost: PropTypes.func.isRequired,
+  response_to: PropTypes.number,
+  setResponding: PropTypes.func,
 };
 
 export default CommentCreateForm;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
+import PropTypes from 'prop-types';
 
 import Card from 'react-bootstrap/Card';
 
@@ -34,6 +35,21 @@ const Reblog = ({ post }) => {
       </Card.Body>
     </Card>
   );
+};
+
+Reblog.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    reblogs: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ),
+    is_owner: PropTypes.bool.isRequired,
+    deleted: PropTypes.bool.isRequired,
+    created_at: PropTypes.string.isRequired,
+    html: PropTypes.string.isRequired,
+  }),
 };
 
 export default Reblog;

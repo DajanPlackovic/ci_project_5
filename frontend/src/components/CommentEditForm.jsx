@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
@@ -59,6 +60,16 @@ const CommentEditForm = ({
       </Card.Body>
     </>
   );
+};
+
+CommentEditForm.propTypes = {
+  id: PropTypes.number.isRequired,
+  commentText: PropTypes.string.isRequired,
+  setCommentText: PropTypes.func.isRequired,
+  setEditMode: PropTypes.func.isRequired,
+  responsesState: PropTypes.shape({
+    results: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
 };
 
 export default CommentEditForm;

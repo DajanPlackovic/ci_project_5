@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const ReblogContext = createContext();
 export const SetReblogContext = createContext();
@@ -22,4 +23,8 @@ export const ReblogProvider = ({ children }) => {
       <ReblogContext.Provider value={reblog}>{children}</ReblogContext.Provider>
     </SetReblogContext.Provider>
   );
+};
+
+ReblogProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

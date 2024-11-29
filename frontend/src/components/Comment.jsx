@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
+import PropTypes from 'prop-types';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -140,4 +141,19 @@ const Comment = ({
   );
 };
 
+Comment.propTypes = {
+  id: PropTypes.number.isRequired,
+  post: PropTypes.object.isRequired,
+  author: PropTypes.object.isRequired,
+  is_owner: PropTypes.bool.isRequired,
+  profile_img: PropTypes.string.isRequired,
+  handle: PropTypes.string.isRequired,
+  created_at: PropTypes.string.isRequired,
+  html: PropTypes.string.isRequired,
+  deleted: PropTypes.bool.isRequired,
+  responses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setPost: PropTypes.func.isRequired,
+};
+
 export default Comment;
+

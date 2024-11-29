@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const ThemeContext = createContext();
 export const SetThemeContext = createContext();
@@ -16,7 +17,7 @@ export const useToggleTheme = () => useContext(ToggleThemeContext);
  * modes, and persists the current theme in localStorage. It updates the
  * HTML element's data attribute to reflect the current theme.
  *
- * @param {React.ReactNode} children - The child components that will have 
+ * @param {React.ReactNode} children - The child components that will have
  * access to the theme context.
  * @returns {JSX.Element} A context provider that supplies the theme value,
  * a function to set the theme, and a function to toggle the theme.
@@ -48,4 +49,8 @@ export const ThemeProvider = ({ children }) => {
       </SetThemeContext.Provider>
     </ThemeContext.Provider>
   );
+};
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
@@ -97,4 +99,8 @@ export const CurrentUserProvider = ({ children }) => {
       </SetCurrentUserContext.Provider>
     </CurrentUserContext.Provider>
   );
+};
+
+CurrentUserProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

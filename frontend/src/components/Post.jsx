@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
+import PropTypes from 'prop-types';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
@@ -129,6 +130,23 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
       )}
     </Card>
   );
+};
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    reblogs: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ),
+    is_owner: PropTypes.bool.isRequired,
+    deleted: PropTypes.bool.isRequired,
+    created_at: PropTypes.string.isRequired,
+    html: PropTypes.string.isRequired,
+  }),
+  editPost: PropTypes.bool,
+  list: PropTypes.bool,
 };
 
 export default Post;

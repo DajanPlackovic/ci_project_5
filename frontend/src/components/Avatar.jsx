@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Image from 'react-bootstrap/esm/Image';
 
@@ -12,7 +13,7 @@ import Spinner from 'react-bootstrap/esm/Spinner';
  * @param {string} author - Name of the author to display.
  * @param {string} handle - User handle to display.
  * @param {boolean} [img_only=false] - If true, only the image is displayed without author and handle.
- * 
+ *
  * @returns {JSX.Element} A JSX element containing the avatar image and optionally author details,
  *                        or a loading spinner if no profile image is available.
  */
@@ -30,6 +31,13 @@ const Avatar = ({ profile_img, author, handle, img_only = false }) => {
   ) : (
     <Spinner role='status' className='m-auto' />
   );
+};
+
+Avatar.propTypes = {
+  profile_img: PropTypes.string,
+  author: PropTypes.string,
+  handle: PropTypes.string,
+  img_only: PropTypes.bool,
 };
 
 export default Avatar;

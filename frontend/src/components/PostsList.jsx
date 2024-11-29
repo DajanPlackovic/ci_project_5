@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import PropTypes from 'prop-types';
 
 import Container from 'react-bootstrap/esm/Container';
 import Spinner from 'react-bootstrap/Spinner';
@@ -79,6 +80,10 @@ const PostsList = ({ filters = '' }) => {
       </Container>
     </>
   );
+};
+
+PostsList.propTypes = {
+  filters: PropTypes.string,
 };
 
 export default PostsList;

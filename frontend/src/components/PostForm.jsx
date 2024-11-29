@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
 
@@ -78,6 +79,14 @@ const PostForm = ({
       </Card.Footer>
     </>
   );
+};
+
+PostForm.propTypes = {
+  id: PropTypes.number,
+  defaultValue: PropTypes.string,
+  setPostText: PropTypes.func,
+  setEditMode: PropTypes.func,
+  list: PropTypes.bool,
 };
 
 export default PostForm;
