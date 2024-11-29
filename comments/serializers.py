@@ -33,7 +33,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "id": response.id,
             'author': response.author.username,
             'post': response.post.id,
-            'updated_at': response.updated_at,
+            'created_at': response.created_at.strftime("%d %b %Y"),
             'html': response.html,
             'profile_slug': response.author.profile.slug,
             'profile_img': response.author.profile.image.url,
