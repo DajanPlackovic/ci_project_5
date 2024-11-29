@@ -54,6 +54,7 @@ const Comment = ({
   const [editMode, setEditMode] = useState(false);
   const [responding, setResponding] = useState(false);
   const [responsesState, setResponsesState] = useState({ results: responses });
+  const [deletedState, setDeletedState] = useState(deleted);
   const notify = useNotify();
 
   const editComment = async () => {
@@ -65,6 +66,7 @@ const Comment = ({
       await axiosRes.delete(`/comments/${id}/`);
       setOwnerActions(false);
       setCommentText('<p>DELETED</p>');
+      setDeletedState(true);
       notify('Comment deleted successfully.');
     } catch (err) {
       raiseError(err);
@@ -95,7 +97,7 @@ const Comment = ({
         <>
           <Card.Header className='d-flex justify-content-end'>
             <ButtonGroup>
-              {ownerActions && !deleted && !responding && (
+              {ownerActions && !deletedState && !responding && (
                 <>
                   <Button
                     className='d-flex align-items-center p-1'
@@ -119,7 +121,10 @@ const Comment = ({
             </ButtonGroup>
           </Card.Header>
           <Card.Body className='pe-0'>
-            <article className='card-text'>{parse(commentText)}</article>
+            <article
+              className={`card-text ${deletedState ? 'text-secondary' : ''}`}>
+              {parse(commentText)}
+            </article>
             {responding ? (
               <CommentCreateForm
                 post={post}
@@ -158,4 +163,3 @@ Comment.propTypes = {
 };
 
 export default Comment;
-
