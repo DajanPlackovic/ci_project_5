@@ -6,8 +6,9 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/esm/Container';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
+import Spinner from 'react-bootstrap/esm/Spinner';
 
-import { axiosRes } from '../api/axiosDefaults';
+import { axiosReq } from '../api/axiosDefaults';
 import Avatar from './Avatar';
 import PostsList from './PostsList';
 
@@ -15,14 +16,15 @@ const Profile = () => {
   const raiseError = useRaiseError();
 
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const { data: profile } = await axiosRes.get(`/profiles/${id}/`);
+        const { data: profile } = await axiosReq.get(`/profiles/${id}/`);
         setProfile(profile);
-        console.log(profile);
+        setLoading(false);
       } catch (err) {
         raiseError(err);
       }
@@ -31,7 +33,9 @@ const Profile = () => {
     getProfile();
   }, [id]);
 
-  return (
+  return loading ? (
+    <Spinner role='status' className='m-auto' />
+  ) : (
     <>
       <Card
         className='col-12 col-md-8 col-lg-6 m-auto p-4 fs-3 d-flex
@@ -60,7 +64,7 @@ const Profile = () => {
           </Container>
         </Row>
       </Card>
-      <PostsList filters={`?author__profile=${profile?.id}`} />
+      <PostsList filters={`author__profile=${profile?.id}&`} />
     </>
   );
 };

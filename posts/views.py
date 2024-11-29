@@ -18,7 +18,7 @@ class PostList(generics.ListCreateAPIView):
         DjangoFilterBackend
     ]
     filterset_fields = [
-        'author__profile__id'
+        'author__profile'
     ]
     search_fields = [
         'author__username',

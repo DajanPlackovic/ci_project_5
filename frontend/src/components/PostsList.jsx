@@ -28,7 +28,7 @@ const PostsList = ({ filters = '' }) => {
   useEffect(() => {
     const getPosts = async () => {
       const { data: posts } = await axiosRes.get(
-        `/posts/${filters}?search=${query}`
+        `/posts/?${filters}search=${query}`
       );
       setLoading(false);
       setPosts(posts);
