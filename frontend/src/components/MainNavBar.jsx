@@ -125,6 +125,15 @@ function MainNavBar() {
                   ref={dropdownRef}
                   align='end'>
                   <NavDropdown.Item eventKey='4.1'>
+                    <Nav.Link
+                      as={Link}
+                      to={`/profiles/${currentUser?.profile_id}/`}
+                      className='nav-link d-flex align-items-center justify-content-between w-100'>
+                      <span className='material-symbols-outlined'>
+                        account_circle
+                      </span>
+                      Go to Profile
+                    </Nav.Link>
                     <button
                       onClick={logOut}
                       className='nav-link d-flex align-items-center justify-content-between w-100'>
