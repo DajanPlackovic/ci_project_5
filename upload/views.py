@@ -7,6 +7,9 @@ import cloudinary.uploader
 
 
 class UploadView(APIView):
+    """
+    An API view that accepts a file upload and passes it off to Cloudinary.
+    """
     parser_classes = (
         MultiPartParser,
         JSONParser,
