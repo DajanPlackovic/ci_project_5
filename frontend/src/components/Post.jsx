@@ -29,7 +29,12 @@ import styles from '../styles/Post.module.css';
  * @param {boolean} [props.list=false] - Determines if the post is part of a list.
  * @returns {JSX.Element} - The rendered Post component.
  */
-const Post = ({ post, editPost: editModeInput = false, list = false }) => {
+const Post = ({
+  post,
+  editPost: editModeInput = false,
+  list = false,
+  removeFromList = null,
+}) => {
   const raiseError = useRaiseError();
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,7 +60,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
       if (location.pathname === `/posts/${post.id}`) {
         navigate('/');
       } else {
-        setPostText('<p>DELETED</p>');
+        removeFromList();
       }
       notify('Post deleted successfully.');
     } catch (err) {
@@ -149,6 +154,7 @@ Post.propTypes = {
   }),
   editPost: PropTypes.bool,
   list: PropTypes.bool,
+  removeFromList: PropTypes.func,
 };
 
 export default Post;

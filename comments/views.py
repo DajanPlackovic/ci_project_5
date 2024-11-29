@@ -16,6 +16,7 @@ class CommentList(generics.ListCreateAPIView):
     filterset_fields = {
         "post": ["exact"],
         "response_to": ["isnull"],
+        "deleted": ["exact"]
     }
 
     def perform_create(self, serializer):

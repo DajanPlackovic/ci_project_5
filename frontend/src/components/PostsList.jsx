@@ -28,7 +28,7 @@ const PostsList = ({ filters = '' }) => {
   useEffect(() => {
     const getPosts = async () => {
       const { data: posts } = await axiosRes.get(
-        `/posts/?${filters}search=${query}`
+        `/posts/?deleted=False&${filters}search=${query}`
       );
       setLoading(false);
       setPosts(posts);
@@ -71,7 +71,17 @@ const PostsList = ({ filters = '' }) => {
               fetchMoreData(posts, setPosts);
             }}>
             {posts.results.map((post) => (
-              <Post key={post.id} post={post} list />
+              <Post
+                key={post.id}
+                post={post}
+                list
+                removeFromList={() => {
+                  setPosts((prevPosts) => ({
+                    ...prevPosts,
+                    results: prevPosts.results.filter((p) => p.id !== post.id),
+                  }));
+                }}
+              />
             ))}
           </InfiniteScroll>
         ) : (

@@ -18,7 +18,8 @@ class PostList(generics.ListCreateAPIView):
         DjangoFilterBackend
     ]
     filterset_fields = [
-        'author__profile'
+        'author__profile',
+        'deleted'
     ]
     search_fields = [
         'author__username',
