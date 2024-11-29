@@ -3,6 +3,22 @@ from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Post model
+
+    Attributes:
+        author (ReadOnlyField): The author of the post
+        is_owner (SerializerMethodField): Whether the current user is
+            the author of the post
+        comment_count (ReadOnlyField): The number of comments on the post
+        profile_slug (ReadOnlyField): The slug of the author's profile
+        profile_img (ReadOnlyField): The URL of the author's profile image
+        handle (ReadOnlyField): The handle of the author's profile
+        reblogs (SerializerMethodField): The list of reblogged posts ending
+            with the post the current post is a reblog of, if the post was
+            based on a previous post.
+    """
+
     author = serializers.ReadOnlyField(source='author.username')
     is_owner = serializers.SerializerMethodField()
     comment_count = serializers.ReadOnlyField()
@@ -10,8 +26,6 @@ class PostSerializer(serializers.ModelSerializer):
     profile_img = serializers.ReadOnlyField(source='author.profile.image.url')
     handle = serializers.ReadOnlyField(source='author.profile.handle')
     reblogs = serializers.SerializerMethodField()
-    # reblogged = serializers.ReadOnlyField(source='reblogged.id')
-    # text = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context["request"]

@@ -7,6 +7,9 @@ from project_5.permissions import IsOwnerOrReadOnly
 
 
 class PostList(generics.ListCreateAPIView):
+    """
+    API endpoint for listing and creating posts
+    """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Post.objects.order_by('-created_at')
     serializer_class = PostSerializer
@@ -24,6 +27,9 @@ class PostList(generics.ListCreateAPIView):
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint for retrieving, updating, or deleting a post.
+    """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Post.objects.annotate(
         comment_count=Count('comment', distinct=True)

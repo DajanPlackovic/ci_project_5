@@ -3,6 +3,18 @@ from .models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    A model serializer for Comment.
+
+    Attributes:
+        author (str): The username of the author who posted the comment.
+        is_owner (bool): Whether the current user is the same as the author.
+        profile_slug (str): The slug of the author's profile.
+        profile_img (str): The URL of the author's profile image.
+        handle (str): The handle of the author's profile.
+        responses (list): A list of responses to the comment, in
+            the same format as a CommentSerializer.
+    """
     author = serializers.ReadOnlyField(source='author.username')
     is_owner = serializers.SerializerMethodField()
     profile_slug = serializers.ReadOnlyField(source='author.profile.slug')
@@ -28,7 +40,8 @@ class CommentSerializer(serializers.ModelSerializer):
             'handle': response.author.profile.handle,
             'is_owner': self.get_is_owner(response),
             'deleted': response.deleted,
-            'responses': [self.make_response(response) for response in response.responses.all()],
+            'responses': [self.make_response(response)
+                          for response in response.responses.all()],
         }
 
     def get_responses(self, obj):
@@ -43,4 +56,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializerDetail(CommentSerializer):
+    """
+    Serializer for Comment model with additional post field
+
+    Attributes:
+        post (int): The id of the post that the comment is in response to.
+    """
     post = serializers.ReadOnlyField(source='post.id')
