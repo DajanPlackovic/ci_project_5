@@ -82,11 +82,10 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
 
         // https://stackoverflow.com/questions/48678236/setting-the-cursor-position-after-setting-a-new-delta-in-quill
         setTimeout(() => {
-          try {
-            quill.setSelection(quill.getSelection().index + 10, 0);
-          } catch (err) {
-            console.log(err);
-          }
+          quill.setSelection(
+            quill.getSelection() ? quill.getSelection()?.index + 10 : 0,
+            0
+          );
         }, 0);
       };
     }
