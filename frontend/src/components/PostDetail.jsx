@@ -10,6 +10,10 @@ import { useRaiseError } from '../contexts/NotificationContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { fetchMoreData } from '../utils/utils';
 import { axiosRes } from '../api/axiosDefaults';
+import {
+  usePostContext,
+  useSetPostContext,
+} from '../contexts/postDetailContext';
 import Post from './Post';
 import Comment from './Comment';
 import CommentCreateForm from './CommentCreateForm';
@@ -23,7 +27,8 @@ const PostDetail = () => {
   const raiseError = useRaiseError();
   const currentUser = useCurrentUser();
 
-  const [post, setPost] = useState(null);
+  const post = usePostContext();
+  const setPost = useSetPostContext();
   const [comments, setComments] = useState([]);
   const { id } = useParams();
 

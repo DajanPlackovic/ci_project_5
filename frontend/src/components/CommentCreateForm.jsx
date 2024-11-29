@@ -7,12 +7,12 @@ import Button from 'react-bootstrap/esm/Button';
 import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import { axiosReq } from '../api/axiosDefaults';
 import { getQuillDelta } from '../utils/utils';
+import { useSetPostContext } from '../contexts/postDetailContext';
 import Editor from './Editor';
 
 const CommentCreateForm = ({
   post,
   setComments,
-  setPost,
   response_to = null,
   setResponding = null,
 }) => {
@@ -20,6 +20,7 @@ const CommentCreateForm = ({
 
   const raiseError = useRaiseError();
   const notify = useNotify();
+  const setPost = useSetPostContext();
 
   const handleSubmit = async () => {
     try {

@@ -9,6 +9,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useNotify, useRaiseError } from '../contexts/NotificationContext';
+import { useSetPostContext } from '../contexts/postDetailContext';
 import Avatar from './Avatar';
 import CommentEditForm from './CommentEditForm';
 import CommentCreateForm from './CommentCreateForm';
@@ -45,7 +46,6 @@ const Comment = ({
   html,
   deleted,
   responses,
-  setPost,
 }) => {
   const currentUser = useCurrentUser();
   const raiseError = useRaiseError();
@@ -129,7 +129,6 @@ const Comment = ({
               <CommentCreateForm
                 post={post}
                 setComments={setResponsesState}
-                setPost={setPost}
                 response_to={id}
                 setResponding={setResponding}
                 responses={responsesState}
