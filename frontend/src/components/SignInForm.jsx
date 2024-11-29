@@ -7,7 +7,7 @@ import { setTokenTimestamp } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useRedirect } from '../hooks/useRedirect';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 
 /**
  * Handles user sign-in form submission.
@@ -16,7 +16,7 @@ import { useRaiseError } from '../contexts/GlobalErrorContext';
  * the user, and on success, sets the user in the CurrentUserContext, sets a
  * timestamp for the token, and navigates back one page.
  *
- * If the form data is invalid, raises an error in the GlobalErrorContext.
+ * If the form data is invalid, raises an error in the NotificationContext.
  *
  * The form is rendered with a username and password input field, and a sign
  * in button. If the user doesn't have an account, it also renders a link to

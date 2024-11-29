@@ -8,7 +8,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import Avatar from './Avatar';
 import CommentEditForm from './CommentEditForm';
 import CommentCreateForm from './CommentCreateForm';
@@ -54,6 +54,7 @@ const Comment = ({
   const [editMode, setEditMode] = useState(false);
   const [responding, setResponding] = useState(false);
   const [responsesState, setResponsesState] = useState({ results: responses });
+  const notify = useNotify();
 
   const editComment = async () => {
     setEditMode(true);
@@ -64,6 +65,7 @@ const Comment = ({
       await axiosRes.delete(`/comments/${id}/`);
       setOwnerActions(false);
       setCommentText('<p>DELETED</p>');
+      notify('Comment deleted successfully.');
     } catch (err) {
       raiseError(err);
     }

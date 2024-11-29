@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 import { useParams } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';

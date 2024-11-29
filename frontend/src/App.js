@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/esm/Container';
 import EditorPage from './components/EditorPage';
 import PostsList from './components/PostsList';
 import PostDetail from './components/PostDetail';
-import ErrorContainer from './components/ErrorContainer';
+import NotificationContainer from './components/NotificationContainer';
 import Profile from './components/Profile';
 import { ReblogProvider } from './contexts/ReblogContext';
 
@@ -29,7 +29,7 @@ function App() {
           </Routes>
         </ReblogProvider>
       </Container>
-      <ErrorContainer />
+      <NotificationContainer />
     </div>
   );
 }

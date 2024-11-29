@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
 
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import { getQuillDelta } from '../utils/utils';
 import { axiosReq } from '../api/axiosDefaults';
 import { useRedirect } from '../hooks/useRedirect';
@@ -20,6 +20,7 @@ const PostForm = ({
   setEditMode = null,
   list = false,
 }) => {
+  const notify = useNotify();
   const raiseError = useRaiseError();
   const reblog = useReblog();
   const setReblog = useSetReblog();
@@ -36,6 +37,7 @@ const PostForm = ({
         const { data } = await axiosReq.put(`/posts/${id}/`, { text });
         setPostText(data.html);
         setEditMode(false);
+        notify('Post updated successfully.');
       } else {
         const { data } = await axiosReq.post('/posts/', {
           text,
@@ -43,6 +45,7 @@ const PostForm = ({
         });
         setReblog(null);
         navigate(`/posts/${data.id}`);
+        notify('Post created successfully.');
       }
     } catch (err) {
       raiseError(err);

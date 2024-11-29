@@ -5,7 +5,7 @@ import axios from 'axios';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import { useNavigate } from 'react-router-dom';
 import { removeTokenTimestamp, shouldRefreshToken } from '../utils/utils';
-import { useRaiseError } from './GlobalErrorContext';
+import { useRaiseError } from './NotificationContext';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();

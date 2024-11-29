@@ -56,8 +56,9 @@ class Post(models.Model):
 
     def delete(self, **kwargs):
         """
-        Soft delete a post. Updates the html representation with a "DELETED" message,
-        sets the text to an empty string, and sets the deleted field to True.
+        Soft delete a post. Updates the html representation with a "DELETED"
+        message, sets the text to an empty string, and sets the deleted field
+        to True.
         """
         self.html = "<p>DELETED<p>"
         self.text = ""

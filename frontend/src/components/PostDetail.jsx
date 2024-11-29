@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/esm/Spinner';
 
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { fetchMoreData } from '../utils/utils';
 import { axiosRes } from '../api/axiosDefaults';

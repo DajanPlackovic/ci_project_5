@@ -7,7 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { fetchMoreData } from '../utils/utils';
 import { axiosRes } from '../api/axiosDefaults';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 import Post from './Post';
 
 /**

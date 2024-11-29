@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import ButtonGroup from 'react-bootstrap/esm/ButtonGroup';
 
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import { axiosRes } from '../api/axiosDefaults';
 import { useSetReblog } from '../contexts/ReblogContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
@@ -35,6 +35,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
   const navigate = useNavigate();
   const setReblog = useSetReblog();
   const currentUser = useCurrentUser();
+  const notify = useNotify();
 
   const [postText, setPostText] = useState(post ? post.html : '');
   const [editMode, setEditMode] = useState(editModeInput);
@@ -56,6 +57,7 @@ const Post = ({ post, editPost: editModeInput = false, list = false }) => {
       } else {
         setPostText('<p>DELETED</p>');
       }
+      notify('Post deleted successfully.');
     } catch (err) {
       raiseError(err);
     }

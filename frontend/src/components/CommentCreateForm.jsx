@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import { axiosReq } from '../api/axiosDefaults';
 import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
@@ -19,6 +19,7 @@ const CommentCreateForm = ({
   const quillRef = createRef();
 
   const raiseError = useRaiseError();
+  const notify = useNotify();
 
   const handleSubmit = async () => {
     try {
@@ -39,6 +40,7 @@ const CommentCreateForm = ({
       if (setResponding) {
         setResponding(false);
       }
+      notify('Comment created successfully.');
     } catch (err) {
       raiseError(err);
     }

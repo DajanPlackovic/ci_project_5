@@ -5,20 +5,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { GlobalErrorProvider } from './contexts/GlobalErrorContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <GlobalErrorProvider>
+      <NotificationProvider>
         <ThemeProvider>
           <CurrentUserProvider>
             <App />
           </CurrentUserProvider>
         </ThemeProvider>
-      </GlobalErrorProvider>
+      </NotificationProvider>
     </Router>
   </React.StrictMode>
 );

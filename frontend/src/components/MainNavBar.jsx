@@ -14,7 +14,7 @@ import {
   useSetCurrentUser,
 } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useRaiseError } from '../contexts/NotificationContext';
 import Avatar from './Avatar';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import NavElement from './NavElement';

@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 
 import { axiosRes } from '../api/axiosDefaults';
-import { useRaiseError } from '../contexts/GlobalErrorContext';
+import { useNotify, useRaiseError } from '../contexts/NotificationContext';
 import { getQuillDelta } from '../utils/utils';
 import Editor from './Editor';
 import Comment from './Comment';
@@ -32,6 +32,7 @@ const CommentEditForm = ({
   const quillRef = useRef();
 
   const raiseError = useRaiseError();
+  const notify = useNotify();
 
   const submitEdit = async () => {
     try {
@@ -39,6 +40,7 @@ const CommentEditForm = ({
       const { data } = await axiosRes.put(`/comments/${id}/`, { text });
       setCommentText(data.html);
       setEditMode(false);
+      notify('Comment updated successfully.');
     } catch (err) {
       raiseError(err);
     }
