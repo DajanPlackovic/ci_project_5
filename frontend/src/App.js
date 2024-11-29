@@ -8,6 +8,7 @@ import EditorPage from './components/EditorPage';
 import PostsList from './components/PostsList';
 import PostDetail from './components/PostDetail';
 import ErrorContainer from './components/ErrorContainer';
+import Profile from './components/Profile';
 import { ReblogProvider } from './contexts/ReblogContext';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path='/editor-page' element=<EditorPage /> />
             <Route path='/posts' element=<PostsList /> />
             <Route path='/posts/:id' element=<PostDetail /> />
+            <Route path='/profiles/:id' element=<Profile /> />
             <Route path='*' element={<h1>Not Found</h1>} />
           </Routes>
         </ReblogProvider>
