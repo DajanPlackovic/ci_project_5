@@ -79,7 +79,9 @@ const Post = ({
   return (
     <Card className={`col-12 col-md-8 col-lg-6 m-auto mt-3 ${styles.Post}`}>
       <Card.Header className='d-flex justify-content-between position-relative'>
-        <Avatar {...post} />
+        <Link to={`/profiles/${post?.author_profile}`} className={styles.Link}>
+          <Avatar {...post} />
+        </Link>
         <span className='d-inline-block position-absolute bottom-0 end-0 p-2'>
           {post?.created_at}
         </span>
@@ -151,6 +153,7 @@ Post.propTypes = {
     deleted: PropTypes.bool.isRequired,
     created_at: PropTypes.string.isRequired,
     html: PropTypes.string.isRequired,
+    author_profile: PropTypes.string.isRequired,
   }),
   editPost: PropTypes.bool,
   list: PropTypes.bool,

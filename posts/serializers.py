@@ -20,6 +20,7 @@ class PostSerializer(serializers.ModelSerializer):
     """
 
     author = serializers.ReadOnlyField(source='author.username')
+    author_profile = serializers.ReadOnlyField(source='author.profile.id')
     is_owner = serializers.SerializerMethodField()
     comment_count = serializers.ReadOnlyField()
     profile_slug = serializers.ReadOnlyField(source='author.profile.slug')
@@ -38,6 +39,7 @@ class PostSerializer(serializers.ModelSerializer):
             lst.append({
                 "id": curr.reblogged.id,
                 "author": curr.reblogged.author.username,
+                "author_profile": curr.reblogged.author.profile.id,
                 "created_at": curr.reblogged.created_at.strftime("%d %b %Y"),
                 "html": curr.reblogged.html,
                 "profile_img": curr.reblogged.author.profile.image.url,
@@ -54,4 +56,4 @@ class PostSerializer(serializers.ModelSerializer):
                   'comment_count', 'handle',
                   'profile_img', 'profile_slug',
                   'is_owner', 'deleted', 'reblogs',
-                  'reblogged']
+                  'reblogged', 'author_profile']
