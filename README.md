@@ -122,11 +122,15 @@ A simple component displaying either only the user's profile image or their imag
 A single comment. It displays the content of the comment to all users as well as:
 
 - For any logged in user, it shows the option to respond.
+
   ![Comment with button to respond under header](./readme/comment_respond.png)
+
 - For the author, it shows the option to delete or edit.
+
   ![Comment with buttons to edit and delete](./readme/comment_edit_delete.png)
 
 If there are responses, they are shown below the main body of the comment.
+
 ![Comment with several nested responses](./readme/comment_responses.png)
 
 If the option to edit is clicked, the [CommentEditForm](#commenteditform) component is rendered inside the body of the comment.
@@ -134,6 +138,7 @@ If the option to edit is clicked, the [CommentEditForm](#commenteditform) compon
 If the option to respond is clicked, the [CommentCreateForm](#commentcreateform) component is rendered just below the main body of the comment.
 
 If the comment is deleted, it is soft deleted by changing its text to DELETED. (This is to preserve the comment tree, in case there is a response).
+
 ![Deleted comment with the faded text "DELETED"](./readme/comment_deleted.png)
 
 #### CommentCreateForm
@@ -141,19 +146,23 @@ If the comment is deleted, it is soft deleted by changing its text to DELETED. (
 The form to create a new comment. It renders an [Editor](#editor) component with `post` set to false.
 
 If a comment to be responded to is not passed to it, only the button to post the comment is shown.
+
 ![CommentCreateForm with only one button to post](./readme/commentcreate_no_cancel.png)
 
 If a comment to be responded to is passed, the button to cancel is also displayed. Clicking it sets the `responding` state to false.
+
 ![CommentCreateForm with two buttons, one to post and one to cancel](./readme/commentcreate_cancel.png)
 
 #### CommentEditForm
 
 Renders a header with a button to post and an [Editor](#editor) component with `post` set to false prefilled with the comment text that has been passed to it.
+
 ![CommentEditForm](./readme/commentedit.png)
 
 #### Editor
 
 A wrapper around a Quill instance that allows for richtext editing. Right clicking inside the component or selecting text shows additional editing options, such as setting a part of the text as a heading, setting the formatting to bold, italic, underlined or strikethrough, or adding links or images.
+
 ![A post being edited with various formats and a pop-up showing additional editing options](./readme/post_editor_pop-up.png)
 
 It can be passed a boolean `post` value, which is `false` by default. The `post` value determines which options are displayed. If `post` is set to true, the option to set headings, as well as upload images is displayed. These options are otherwise removed.
@@ -173,9 +182,11 @@ The sticky navbar at the top of each page.
 In any state, it displays the button to toggle between the dark and light themes. Toggling changes the appearance of the website, as well as saves the user preference in local storage so that it persists across sessions in the same browser.
 
 If the user is not logged in, a button to log in also displayed.
+
 ![MainNavBar with the title "Project 5" to the far left, and a sun icon for theme toggling and a button to sign in on the far right ](./readme/main_nav_signed_out.png)
 
 If the user is logged in, a button to add a new post is displayed, as well as the user's profile image. Clicking on the profile image displays a dropdown with options to go to one's own profile or log out.
+
 ![MainNavBar with a plus button to add a post and the user's profile image to the far right](./readme/main_nav_signed_in.png)
 
 #### NavElement
@@ -183,9 +194,11 @@ If the user is logged in, a button to add a new post is displayed, as well as th
 The component wraps buttons in the [MainNavBar](##mainnavbar). It takes `symbol` and `hint` as props.
 
 On larger screens, it renders only the symbol, with the hint added inside a tooltip displayed on hover.
+
 ![Sun icon with tooltip displaying the hint "Light Mode"](./readme/navel_desktop.png)
 
 On smaller screens, the hint is added directly to the body of its child element.
+
 ![Sun icon with the text "Light Mode" next to it inside a mobile hamburger menu](./readme/navel_mobile.png)
 
 #### Notification Container
@@ -193,9 +206,11 @@ On smaller screens, the hint is added directly to the body of its child element.
 An invisible react-boostrap ToastContainer component sticking to the top of the screen.
 
 On most edit, delete and post actions, it displays a notification at the top of the screen which disappears automatically after a short delay.
+
 ![A notification indicating a comment has been created](./readme/notification.png)
 
 In case of any error with a status code different to 404, an error message is displayed inside a toast at the top of the screen. Errors do not disappear automatically and have to be dismissed.
+
 ![A red error message indicating that the file size of the uploaded image is too large](./readme/error.png)
 
 #### Post
@@ -203,9 +218,11 @@ In case of any error with a status code different to 404, an error message is di
 Renders a single post, applying the various formatting options, images and links.
 
 Any logged in user also sees the option to reblog at the bottom.
+
 ![Post with formatting, an image and a link, as well as a reblog button in the lower right corner](./readme/post_reblog.png)
 
 The author additionally sees the option to edit or delete the post.
+
 ![Bottom of a post with buttons for deleting and editing](./readme/post_delete_edit.png)
 
 Editing the post renders a [PostForm](#postform) component inside the body of the post prefilled with the contents of the post.
@@ -213,9 +230,11 @@ Editing the post renders a [PostForm](#postform) component inside the body of th
 Deleting the post soft-deletes it and redirects to the home page is the user is viewing the [PostDetail](#postdetail) page or removes the post from the state of the page if it is deleted inside the [PostsList](#postslist) component. (The soft deletion ensures that any posts that reblogged the post are still rendered correctly, merely showing the text "DELETED" in the place where the deleted post used to be.)
 
 If the post reblogged another post, that post and any posts the reblogged post was a reblog of are displayed inside the post body above the main content.
+
 ![A post containing several reblogs, on of which is deleted](./readme/post_with_reblogs.png)
 
 Additionally, each post contains a link to its [PostDetail]() page when it is displayed inside a [PostsList]() element.
+
 ![The same post with a link icon in the top right](./readme/post_link.png)
 
 #### PostDetail
@@ -223,6 +242,7 @@ Additionally, each post contains a link to its [PostDetail]() page when it is di
 Renders a single post in a [Post](#post) component with all its comments underneath in [Comment](#comment) components. The total number of comments is displayed above the list of comments.
 
 If the user is not logged in, a button prompting them to log in is displayed above the comments.
+
 ![A blue button with the text "Log into comment"](./readme/log_in_to_comment.png)
 
 If the user is logged in, a [CommentCreateForm](#commentcreateform) is rendered at the top instead.
@@ -234,6 +254,7 @@ Renders the [PostDetail](#postdetail) components inside the PostContext.Provider
 #### PostForm
 
 Renders an [Editor](#editor) component with `post` set to `true` and buttons to post or cancel at the bottom. The cancel button changes the `edit` state in case the setter has been passed to the component and otherwise navigates back. The post button creates or edits the post depending on its props.
+
 ![A PostForm with post and cancel buttons at the bottom](./readme/post_editor_controls.png)
 
 #### PostsList
