@@ -17,8 +17,4 @@ const EditorPage = () => {
   );
 };
 
-EditorPage.propTypes = {
-  // Add prop types here
-};
-
 export default EditorPage;

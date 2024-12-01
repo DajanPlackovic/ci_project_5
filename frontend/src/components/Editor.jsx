@@ -65,7 +65,6 @@ const BaseEditor = forwardRef(({ post, defaultValue }, ref) => {
     ref.current = quill;
 
     function imageHandler() {
-      // console.log('image handler called');
       const input = document.createElement('input');
 
       input.setAttribute('type', 'file');
