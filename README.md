@@ -107,6 +107,8 @@ The Project can be viewed [here](https://github.com/users/DajanPlackovic/project
 
 ## Front End
 
+### Wireframes
+
 ### Components
 
 #### Avatar
@@ -623,7 +625,48 @@ The back end is written using [**Python**](https://www.python.org/) within the [
 
 ## Deployment
 
-Both the front end and the back end have been deployed as a monorepo to Heroku following the instructions for consolidating both projects from the Moments walkthrough project.
+Since the project was deployed as a monorepo, I wrote the React code in the `frontend/` subfolder and ran it on a separate port from the backend while testing to allow for hot reloading.
+
+To deploy the project, I ran `npm build` and then moved the built frontend into the static folder for the Django backend, `staticfiles/build/`. `npm run deploy` can also be run in the subfolder for faster iteration, since I wrote a shortcut for this series of commands in my `package.json`.
+
+To ensure the Django backend defers to the React frontend for routing to pages other than the `api/` prefixed API endpoints, I modified the main `urls.py` file of `project_5` to include the following path within the `urlpatterns` array:
+
+```py
+    path('', TemplateView.as_view(template_name='index.html')),
+```
+
+Additionally, I added the following line to defer to React for handling 404 errors:
+
+```py
+handler404 = TemplateView.as_view(template_name='index.html')
+```
+
+I installed `gunicorn` to serve as a WSGI HTTP server with Heroku and `whitenoise` to serve static files correctly. I also added a `Procfile` with the following contents:
+
+```
+web: gunicorn project_5.wsgi
+```
+
+I created a new app in Heroku and set my server to the European common runtime.
+
+![Heroku dashboard showing the Create new app button](./readme/heroku_new_app.png)
+
+![The section of the Heroku Create new app screen showing the selection of the European Common Runtime](./readme/heroku_europe.png)
+
+To ensure the smooth functioning of the website, I set the following environmental variables under Settings > Config Vars:
+
+- `ALLOWED_HOST` set to the URL of the heroku app without a leading `https://` or a trailing slash, i.e., `project-5-dplackov-3323765a0d3d.herokuapp.com`, to ensure no CORS errors are thrown
+- `CLIENT_ORIGIN`set to the same URL with both the protocol and the trailing slash, i.e., `https://project-5-dplackov-3323765a0d3d.herokuapp.com/` for the same reason
+- `SECRET_KEY` set to a secret value to ensure cryptographic signing of session cookies (it was
+  generated using [Djecrety](https://djecrety.ir/))
+- `DATABASE_URL` in the format `postgres://{USERNAME}:{PASSWORD}@{DATABASE_ADDRESS}` to ensure the website can connect to and authenticate with the external PostgreSQL database
+- `CLOUD_NAME`, `API_SECRET` and `API_KEY` to ensure correct connection with Cloudinary
+
+![The config vars area in the Heroku dashboard](./readme/config_vars.png)
+
+Finally, the app was connected to my GitHub repository through the Heroku dashboard and deployed by clicking on the **Deploy Branch** button.
+
+![The Heroku dashboard with the Deploy Branch button highlighted](./readme/heroku_deploy.png)
 
 ## Acknowledgments
 
