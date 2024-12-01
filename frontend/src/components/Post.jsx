@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
@@ -44,6 +44,10 @@ const Post = ({
 
   const [postText, setPostText] = useState(post ? post.html : '');
   const [editMode, setEditMode] = useState(editModeInput);
+
+  useEffect(() => {
+    setPostText(post.html);
+  }, [post]);
 
   const editPost = () => {
     setReblog({
