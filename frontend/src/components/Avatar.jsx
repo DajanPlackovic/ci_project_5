@@ -20,7 +20,13 @@ import Spinner from 'react-bootstrap/esm/Spinner';
 const Avatar = ({ profile_img, author, handle, img_only = false }) => {
   return profile_img ? (
     <div className='d-flex'>
-      <Image src={profile_img} roundedCircle fluid className={styles.Image} />
+      <Image
+        src={profile_img}
+        roundedCircle
+        fluid
+        className={styles.Image}
+        alt={`${author}'s profile image`}
+      />
       {!img_only && (
         <div className='d-flex flex-column mx-2'>
           <span>{author}</span>{' '}
