@@ -35,7 +35,7 @@ export const NotificationProvider = ({ children }) => {
       setNotifications((prevState) => [
         ...prevState,
         {
-          variant: 'danger',
+          error: true,
           message: error.response?.data?.error || error.message,
         },
       ]);
@@ -45,7 +45,7 @@ export const NotificationProvider = ({ children }) => {
     setNotifications((prevState) => [
       ...prevState,
       {
-        variant: 'success',
+        error: false,
         message: notification,
       },
     ]);

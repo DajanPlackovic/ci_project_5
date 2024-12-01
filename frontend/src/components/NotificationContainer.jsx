@@ -22,14 +22,16 @@ const NotificationContainer = () => {
       className='mt-3 d-flex flex-column position-fixed'>
       {notifications?.map((notification, idx) => (
         <Toast
-          bg={notification.variant}
+          bg={notification.error ? 'danger' : 'success'}
           key={notification.message + idx}
           className='d-inline-block m-1'
           onClose={() => clear(idx)}
           delay='3000'
-          autohide={notification.variant === 'success'}>
+          autohide={!notification.error}>
           <Toast.Header>
-            <strong className='me-auto'>An error has occurred</strong>
+            <strong className='me-auto'>
+              {notification.error ? 'Error' : 'Success'}
+            </strong>
           </Toast.Header>
           <Toast.Body>{notification.message}</Toast.Body>
         </Toast>
