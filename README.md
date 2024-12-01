@@ -191,7 +191,7 @@ If the user is logged in, a button to add a new post is displayed, as well as th
 
 #### NavElement
 
-The component wraps buttons in the [MainNavBar](##mainnavbar). It takes `symbol` and `hint` as props.
+The component wraps buttons in the [MainNavBar](#mainnavbar). It takes `symbol` and `hint` as props.
 
 On larger screens, it renders only the symbol, with the hint added inside a tooltip displayed on hover.
 
@@ -233,7 +233,7 @@ If the post reblogged another post, that post and any posts the reblogged post w
 
 ![A post containing several reblogs, on of which is deleted](./readme/post_with_reblogs.png)
 
-Additionally, each post contains a link to its [PostDetail]() page when it is displayed inside a [PostsList]() element.
+Additionally, each post contains a link to its [PostDetail](#postdetail) page when it is displayed inside a [PostsList](#postslist) element.
 
 ![The same post with a link icon in the top right](./readme/post_link.png)
 
@@ -275,7 +275,7 @@ A component rendering a reblogged post. It always links to the [PostDetailPage](
 
 #### SignInForm
 
-A sign in form. There are fields for the username and the password. At the bottom is a link to the [SignUpForm](##signupform).
+A sign in form. There are fields for the username and the password. At the bottom is a link to the [SignUpForm](#signupform).
 
 ![SignInForm component](./readme/sign_in.png)
 
