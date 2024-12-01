@@ -22,7 +22,6 @@ function App() {
             <Route path='/signin' element=<SignInForm /> />
             <Route path='/signup' element=<SignUpForm /> />
             <Route path='/editor-page' element=<EditorPage /> />
-            <Route path='/posts' element=<PostsList /> />
             <Route path='/posts/:id' element=<PostDetailPage /> />
             <Route path='/profiles/:id' element=<Profile /> />
             <Route path='*' element={<h1>Not Found</h1>} />
