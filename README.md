@@ -109,6 +109,14 @@ The Project can be viewed [here](https://github.com/users/DajanPlackovic/project
 
 ### Wireframes
 
+All wireframes were created with [Balsamiq](https://balsamiq.com/).
+
+| Page                                | Desktop Wireframe                                                        | Mobile Wireframe                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Home / Liked Posts / Followed Posts | ![Post List Desktop Wireframe](./readme/Desktop%20Home.png)              | ![Post List Mobile Wireframe](./readme/Mobile%20Home.png)              |
+| Post Detail                         | ![Post Detail Desktop Wireframe](./readme/Desktop%20Post%20Detail.png)   | ![Post Detail Mobile Wireframe](./readme/Mobile%20Post%20Detail.png)   |
+| Profile                             | ![Profile Page Desktop Wireframe](./readme/Desktop%20Profile%20Page.png) | ![Profile Page Mobile Wireframe](./readme/Mobile%20Profile%20Page.png) |
+
 ### Components
 
 #### Avatar
